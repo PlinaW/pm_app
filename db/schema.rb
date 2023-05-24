@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_24_183731) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_24_191618) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "product_backlogs", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.bigint "project_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_product_backlogs_on_project_id"
+  end
 
   create_table "project_members", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -47,6 +56,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_24_183731) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "product_backlogs", "projects"
   add_foreign_key "project_members", "projects"
   add_foreign_key "project_members", "users"
 end
