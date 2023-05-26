@@ -5,4 +5,7 @@ class Project < ApplicationRecord
   has_many :user_stories, through: :product_backlog
   has_many :project_members
   has_many :users, through: :project_members
+
+  validates :name, presence: true
+
 end
