@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_24_210904) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_25_213217) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -24,7 +24,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_24_210904) do
     t.datetime "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "sprint_backlog_id"
     t.index ["product_backlog_id"], name: "index_features_on_product_backlog_id"
+    t.index ["sprint_backlog_id"], name: "index_features_on_sprint_backlog_id"
   end
 
   create_table "product_backlogs", force: :cascade do |t|
@@ -66,6 +68,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_24_210904) do
     t.index ["product_backlog_id"], name: "index_sprint_backlogs_on_product_backlog_id"
   end
 
+  create_table "user_stories", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "priority"
+    t.integer "points"
+    t.string "status"
+    t.bigint "feature_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["feature_id"], name: "index_user_stories_on_feature_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -81,8 +95,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_24_210904) do
   end
 
   add_foreign_key "features", "product_backlogs"
+  add_foreign_key "features", "sprint_backlogs"
   add_foreign_key "product_backlogs", "projects"
   add_foreign_key "project_members", "projects"
   add_foreign_key "project_members", "users"
   add_foreign_key "sprint_backlogs", "product_backlogs"
+  add_foreign_key "user_stories", "features"
 end
