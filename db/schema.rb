@@ -10,9 +10,76 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_16_160153) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_30_163102) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "features", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.string "type"
+    t.string "status"
+    t.integer "priority"
+    t.text "comment"
+    t.string "created_by"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "project_id", null: false
+    t.index ["project_id"], name: "index_features_on_project_id"
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.string "status"
+    t.date "started_at"
+    t.date "ended_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sprints", force: :cascade do |t|
+    t.string "name"
+    t.text "goal"
+    t.string "created_by"
+    t.date "started_at"
+    t.date "ended_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.string "status"
+    t.integer "priority"
+    t.text "comment"
+    t.string "created_by"
+    t.string "owner"
+    t.datetime "started_at"
+    t.datetime "ended_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_story_id", null: false
+    t.bigint "sprint_id", null: false
+    t.bigint "user_id", null: false
+    t.index ["sprint_id"], name: "index_tasks_on_sprint_id"
+    t.index ["user_id"], name: "index_tasks_on_user_id"
+    t.index ["user_story_id"], name: "index_tasks_on_user_story_id"
+  end
+
+  create_table "user_stories", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.string "status"
+    t.integer "priority"
+    t.text "comment"
+    t.string "created_by"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "feature_id", null: false
+    t.index ["feature_id"], name: "index_user_stories_on_feature_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -28,4 +95,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_16_160153) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "features", "projects"
+  add_foreign_key "tasks", "sprints"
+  add_foreign_key "tasks", "user_stories"
+  add_foreign_key "tasks", "users"
+  add_foreign_key "user_stories", "features"
 end
