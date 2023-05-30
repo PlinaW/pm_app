@@ -15,6 +15,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_30_163102) do
   enable_extension "plpgsql"
 
   create_table "features", force: :cascade do |t|
+    t.bigint "project_id"
     t.string "name"
     t.text "description"
     t.string "type"
@@ -24,7 +25,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_30_163102) do
     t.string "created_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "project_id", null: false
     t.index ["project_id"], name: "index_features_on_project_id"
   end
 
@@ -39,6 +39,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_30_163102) do
   end
 
   create_table "sprints", force: :cascade do |t|
+    t.bigint "project_id"
     t.string "name"
     t.text "goal"
     t.string "created_by"
@@ -46,9 +47,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_30_163102) do
     t.date "ended_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_sprints_on_project_id"
   end
 
   create_table "tasks", force: :cascade do |t|
+    t.bigint "user_story_id"
+    t.bigint "sprint_id"
+    t.bigint "user_id"
     t.string "name"
     t.text "description"
     t.string "status"
@@ -60,15 +65,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_30_163102) do
     t.datetime "ended_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_story_id", null: false
-    t.bigint "sprint_id", null: false
-    t.bigint "user_id", null: false
     t.index ["sprint_id"], name: "index_tasks_on_sprint_id"
     t.index ["user_id"], name: "index_tasks_on_user_id"
     t.index ["user_story_id"], name: "index_tasks_on_user_story_id"
   end
 
   create_table "user_stories", force: :cascade do |t|
+    t.bigint "feature_id"
     t.string "name"
     t.text "description"
     t.string "status"
@@ -77,7 +80,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_30_163102) do
     t.string "created_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "feature_id", null: false
     t.index ["feature_id"], name: "index_user_stories_on_feature_id"
   end
 
@@ -96,6 +98,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_30_163102) do
   end
 
   add_foreign_key "features", "projects"
+  add_foreign_key "sprints", "projects"
   add_foreign_key "tasks", "sprints"
   add_foreign_key "tasks", "user_stories"
   add_foreign_key "tasks", "users"

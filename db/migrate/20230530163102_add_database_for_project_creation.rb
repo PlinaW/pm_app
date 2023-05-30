@@ -10,6 +10,7 @@ class AddDatabaseForProjectCreation < ActiveRecord::Migration[7.0]
     end
 
     create_table :features do |t|
+      t.references :project, index: true, foreign_key: true
       t.string :name, unique: true
       t.text :description
       t.string :type
@@ -18,10 +19,10 @@ class AddDatabaseForProjectCreation < ActiveRecord::Migration[7.0]
       t.text :comment
       t.string :created_by
       t.timestamps
-      t.references :project, index: true, null: false, foreign_key: true
     end 
 
     create_table :user_stories do |t|
+      t.references :feature, index: true, foreign_key: true
       t.string :name, unique: true
       t.text :description
       t.string :status
@@ -29,10 +30,10 @@ class AddDatabaseForProjectCreation < ActiveRecord::Migration[7.0]
       t.text :comment
       t.string :created_by
       t.timestamps
-      t.references :feature, index: true, null: false, foreign_key: true
     end 
   
     create_table :sprints do |t|
+      t.references :project, index: true, foreign_key: true
       t.string :name, unique: true
       t.text :goal
       t.string :created_by
@@ -42,6 +43,9 @@ class AddDatabaseForProjectCreation < ActiveRecord::Migration[7.0]
     end 
     
     create_table :tasks do |t|
+      t.references :user_story, index: true, foreign_key: true
+      t.references :sprint, index: true, foreign_key: true
+      t.references :user, index: true, foreign_key: true
       t.string :name
       t.text :description
       t.string :status
@@ -52,9 +56,6 @@ class AddDatabaseForProjectCreation < ActiveRecord::Migration[7.0]
       t.datetime :started_at
       t.datetime :ended_at
       t.timestamps
-      t.references :user_story, index: true, null: false, foreign_key: true
-      t.references :sprint, index: true, null: false, foreign_key: true
-      t.references :user, index: true, null: false, foreign_key: true
     end 
 
   end
