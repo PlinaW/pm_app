@@ -33,7 +33,6 @@ class AddDatabaseForProjectCreation < ActiveRecord::Migration[7.0]
     end 
   
     create_table :sprints do |t|
-      t.references :project, index: true, foreign_key: true
       t.string :name, unique: true
       t.text :goal
       t.string :created_by

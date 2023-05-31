@@ -57,9 +57,9 @@ end
 
 def create_sprints
 
-  Sprint.create([{project: Project.first, name: 'Przygotowanie dostępu dla użytkownika do korzystania z aplikacji', goal: 'Użytkownik musi mieć możliwość wejścia do apki',
+  Sprint.create([{name: 'Przygotowanie dostępu dla użytkownika do korzystania z aplikacji', goal: 'Użytkownik musi mieć możliwość wejścia do apki',
                   created_by: User.first, started_at: Date.today, ended_at: '6 June 2023'},
-                 {project: Project.second,name: 'Przygotowanie dostępu dla użytkownika do korzystania z aplikacji', goal: 'Użytkownik musi mieć możliwość wejścia do apki',
+                 {name: 'Przygotowanie dostępu dla użytkownika do korzystania z aplikacji', goal: 'Użytkownik musi mieć możliwość wejścia do apki',
                   created_by: User.second, started_at: Date.today, ended_at: '6 June 2023'}])
   
 end
@@ -70,7 +70,7 @@ def create_tasks
                 created_by: UserStory.first.created_by, owner: User.first, started_at: Date.today, ended_at: Date.tomorrow, user_story: UserStory.first, sprint: Sprint.first,
                 user: User.first},
                 {name: UserStory.second.name, description: UserStory.second.description, status: UserStory.second.status, priority: UserStory.second.priority, comment: UserStory.second.comment,
-                created_by: UserStory.second.created_by, owner: User.second, started_at: Date.today, ended_at: Date.tomorrow, user_story: UserStory.second, sprint: Sprint.second,
+                created_by: UserStory.second.created_by, owner: User.second, started_at: Date.today, ended_at: Date.tomorrow, user_story: UserStory.second, sprint: Sprint.first,
                 user: User.second}])
   
 end

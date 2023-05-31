@@ -39,7 +39,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_30_163102) do
   end
 
   create_table "sprints", force: :cascade do |t|
-    t.bigint "project_id"
     t.string "name"
     t.text "goal"
     t.string "created_by"
@@ -47,7 +46,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_30_163102) do
     t.date "ended_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["project_id"], name: "index_sprints_on_project_id"
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -98,7 +96,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_30_163102) do
   end
 
   add_foreign_key "features", "projects"
-  add_foreign_key "sprints", "projects"
   add_foreign_key "tasks", "sprints"
   add_foreign_key "tasks", "user_stories"
   add_foreign_key "tasks", "users"
