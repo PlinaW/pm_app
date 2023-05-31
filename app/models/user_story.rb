@@ -1,9 +1,9 @@
 class UserStory < ApplicationRecord
-  belongs_to :feature
+  belongs_to :epic
   has_many :tasks
 
   validates :name, presence: true,
-             uniqueness: { scope: :project_id, case_sensitive: false },
+             uniqueness: { case_sensitive: false },
              length: { maximum: 250 }
 
 end

@@ -9,7 +9,7 @@ class AddDatabaseForProjectCreation < ActiveRecord::Migration[7.0]
       t.timestamps
     end
 
-    create_table :features do |t|
+    create_table :epics do |t|
       t.references :project, index: true, foreign_key: true
       t.string :name, unique: true
       t.text :description
@@ -22,7 +22,7 @@ class AddDatabaseForProjectCreation < ActiveRecord::Migration[7.0]
     end 
 
     create_table :user_stories do |t|
-      t.references :feature, index: true, foreign_key: true
+      t.references :epic, index: true, foreign_key: true
       t.string :name, unique: true
       t.text :description
       t.string :status

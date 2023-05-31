@@ -22,19 +22,19 @@ def create_projects
 
 end
 
-def create_features
+def create_epics
   
-  Feature.create([{name: 'Funkcjonalnoścć rejestracji użytkowników', description: 'Użytkownik ma mieć możlwiość założenia konta', 
-                   type: 'Feature', priority: 5, comment: 'Ogarnąłem właśnie, że będę chyba potrzebować stworzyć model na komentarze xd',
+  Epic.create([{name: 'Funkcjonalnoścć rejestracji użytkowników', description: 'Użytkownik ma mieć możlwiość założenia konta', 
+                   type: 'Epic', priority: 5, comment: 'Ogarnąłem właśnie, że będę chyba potrzebować stworzyć model na komentarze xd',
                    created_by: User.find_by(first_name: 'Wojciech'), project: Project.first},
                   {name: 'Funkcjonalnoścć logowania użytkowników', description: 'Użytkownik ma mieć możlwiość zalogowania do konta', 
-                   type: 'Feature', priority: 5, comment: 'Ogarnąłem właśnie, że będę chyba potrzebować stworzyć model na komentarze xd',
+                   type: 'Epic', priority: 5, comment: 'Ogarnąłem właśnie, że będę chyba potrzebować stworzyć model na komentarze xd',
                    created_by: User.find_by(first_name: 'Wojciech'), project: Project.first},
                   {name: 'Funkcjonalnoścć rejestracji użytkowników', description: 'Użytkownik ma mieć możlwiość założenia konta', 
-                   type: 'Feature', priority: 5, comment: 'Ogarnąłem właśnie, że będę chyba potrzebować stworzyć model na komentarze xd',
+                   type: 'Epic', priority: 5, comment: 'Ogarnąłem właśnie, że będę chyba potrzebować stworzyć model na komentarze xd',
                    created_by: User.find_by(first_name: 'Wojciech'), project: Project.second},
                   {name: 'Funkcjonalnoścć logowania użytkowników', description: 'Użytkownik ma mieć możlwiość zalogowania do konta', 
-                   type: 'Feature', priority: 5, comment: 'Ogarnąłem właśnie, że będę chyba potrzebować stworzyć model na komentarze xd',
+                   type: 'Epic', priority: 5, comment: 'Ogarnąłem właśnie, że będę chyba potrzebować stworzyć model na komentarze xd',
                    created_by: User.find_by(first_name: 'Wojciech'), project: Project.second}])
 end
 
@@ -42,16 +42,16 @@ def create_user_stories
 
   UserStory.create([{name: 'Jako nowy użytkownik chcę mieć możlwiość założenia konta', description: 'Trzeba wprowadzić devise by móc założyć konto użytkownikowi',
                      status: 'Do zrobienia', priority: 5, comment: 'Tutaj tak samo potrzebny jest model komentarzy, ale chyba jeden model wystarczy', created_by: User.first,
-                     feature: Feature.first},
+                     epic: Epic.first},
                      {name: 'Jako nowy użytkownik chce mieć możliwość rejestracji za pomocą formularza', description: 'Trzeba stworzyć widok z formularzem do rejestracji',
                      status: 'Do zrobienia', priority: 5, comment: 'Tutaj tak samo potrzebny jest model komentarzy, ale chyba jeden model wystarczy', created_by: User.first,
-                     feature: Feature.first},
+                     epic: Epic.first},
                      {name: 'Jako nowy użytkownik chcę mieć możlwiość założenia konta', description: 'Trzeba wprowadzić devise by móc założyć konto użytkownikowi',
                      status: 'Do zrobienia', priority: 5, comment: 'Tutaj tak samo potrzebny jest model komentarzy, ale chyba jeden model wystarczy', created_by: User.second,
-                     feature: Feature.second},
+                     epic: Epic.second},
                      {name: 'Jako nowy użytkownik chce mieć możliwość rejestracji za pomocą formularza', description: 'Trzeba stworzyć widok z formularzem do rejestracji',
                      status: 'Do zrobienia', priority: 5, comment: 'Tutaj tak samo potrzebny jest model komentarzy, ale chyba jeden model wystarczy', created_by: User.second,
-                     feature: Feature.second},])
+                     epic: Epic.second},])
   
 end
 
@@ -80,7 +80,7 @@ ActiveRecord::Base.transaction do
 
   create_users
   create_projects
-  create_features
+  create_epics
   create_user_stories  
   create_sprints
   create_tasks
