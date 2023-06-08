@@ -1,88 +1,86 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
-
-
 def create_users
-
-  User.create!([{first_name: 'Wojciech', email: 'wojciech@example.com', password: 'password'},
-                {first_name:'Martyna', email: 'martyna@example.com', password: 'password'}, 
-                {first_name: 'Grzegorz', email: 'grzegorz@example.com', password: 'password'}])
-                  
+  User.create!([{ first_name: 'Wojciech', last_name: 'Wojciechowski',
+                  email: 'wojciech@example.com', password: 'abcdefgh' },
+                { first_name:'Martyna', last_name: 'Martynowska',
+                  email: 'martyna@example.com', password: 'zxyuvwabc' }, 
+                { first_name: 'Grzegorz', last_name: 'Grzegorzewski',
+                  email: 'grzegorz@example.com', password: 'abc123abc' }])             
 end
 
 def create_projects
-
-  Project.create([{name: 'PM_APP', description: 'Aplikacja służąca do zarządzania projektów', status: 'W realizacji', started_at: Date.today, ended_at: '1 September 2023'}, 
-                  {name: 'POST_APP', description: 'Aplikacja dla kurierów', status: 'W realizacji', started_at: Date.today, ended_at: '1 September 2023'}])
-
+  Project.create([{ name: 'Jak zarobić a się nie narobić', description: 'Aplikacja służąca do zarządzania projektami',
+                    status: 'pending', start_date: Date.today, end_date: Date.today + 6.months }, 
+                  { name: 'Gdybym miał 4 ręce i 2 busy', description: 'Aplikacja dla kurierów',
+                    status: 'pending', start_date: Date.today - 2.months, end_date: Date.today + 20.days }])
 end
 
-def create_epics
-  
-  Epic.create([{name: 'Funkcjonalnoścć rejestracji użytkowników', description: 'Użytkownik ma mieć możlwiość założenia konta', 
-                   type: 'Epic', priority: 5, comment: 'Ogarnąłem właśnie, że będę chyba potrzebować stworzyć model na komentarze xd',
-                   created_by: User.find_by(first_name: 'Wojciech'), project: Project.first},
-                  {name: 'Funkcjonalnoścć logowania użytkowników', description: 'Użytkownik ma mieć możlwiość zalogowania do konta', 
-                   type: 'Epic', priority: 5, comment: 'Ogarnąłem właśnie, że będę chyba potrzebować stworzyć model na komentarze xd',
-                   created_by: User.find_by(first_name: 'Wojciech'), project: Project.first},
-                  {name: 'Funkcjonalnoścć rejestracji użytkowników', description: 'Użytkownik ma mieć możlwiość założenia konta', 
-                   type: 'Epic', priority: 5, comment: 'Ogarnąłem właśnie, że będę chyba potrzebować stworzyć model na komentarze xd',
-                   created_by: User.find_by(first_name: 'Wojciech'), project: Project.second},
-                  {name: 'Funkcjonalnoścć logowania użytkowników', description: 'Użytkownik ma mieć możlwiość zalogowania do konta', 
-                   type: 'Epic', priority: 5, comment: 'Ogarnąłem właśnie, że będę chyba potrzebować stworzyć model na komentarze xd',
-                   created_by: User.find_by(first_name: 'Wojciech'), project: Project.second}])
+def create_epics  
+  Epic.create([{ name: 'Funkcjonalność rejestracji nowych użytkowników', 
+                 description: 'Użytkownik ma mieć możliwość stworzenia swojego konta, które będzie zawierało dane użytkownika i umożliwiało mu korzystanie z aplikacji.', 
+                 priority: 1, context: 'feature', status: 'pending', project: Project.first },
+               { name: 'Funkcjonalnoścć logowania użytkowników', description: 'Użytkownik ma mieć możlwiość zalogowania do konta', 
+                 priority: 2, context: 'feature', status: 'pending', project: Project.first },
+               { name: 'Możliwość przeglądania i edytowania konta użytkownika', description: 'Użytkownik ma mieć możlwiość przeglądania oraz edytowania konta', 
+                 priority: 3, context: 'feature', status: 'pending', project: Project.first },
+               { name: 'Funkcjonalność tworzenia zleceń dla kurierów', description: 'Użytkownik ma mieć możlwiość przypisania zlecenia kurierowi z wolnymi przebiegami', 
+                 priority: 1, context: 'feature', status: 'pending', project: Project.second }])
 end
 
 def create_user_stories
-
-  UserStory.create([{name: 'Jako nowy użytkownik chcę mieć możlwiość założenia konta', description: 'Trzeba wprowadzić devise by móc założyć konto użytkownikowi',
-                     status: 'Do zrobienia', priority: 5, comment: 'Tutaj tak samo potrzebny jest model komentarzy, ale chyba jeden model wystarczy', created_by: User.first,
-                     epic: Epic.first},
-                     {name: 'Jako nowy użytkownik chce mieć możliwość rejestracji za pomocą formularza', description: 'Trzeba stworzyć widok z formularzem do rejestracji',
-                     status: 'Do zrobienia', priority: 5, comment: 'Tutaj tak samo potrzebny jest model komentarzy, ale chyba jeden model wystarczy', created_by: User.first,
-                     epic: Epic.first},
-                     {name: 'Jako nowy użytkownik chcę mieć możlwiość założenia konta', description: 'Trzeba wprowadzić devise by móc założyć konto użytkownikowi',
-                     status: 'Do zrobienia', priority: 5, comment: 'Tutaj tak samo potrzebny jest model komentarzy, ale chyba jeden model wystarczy', created_by: User.second,
-                     epic: Epic.second},
-                     {name: 'Jako nowy użytkownik chce mieć możliwość rejestracji za pomocą formularza', description: 'Trzeba stworzyć widok z formularzem do rejestracji',
-                     status: 'Do zrobienia', priority: 5, comment: 'Tutaj tak samo potrzebny jest model komentarzy, ale chyba jeden model wystarczy', created_by: User.second,
-                     epic: Epic.second},])
-  
+  UserStory.create([{ name: 'Tworzenie konta użytkownika', 
+                      description: 'Jako użytkownik chcę mieć możliwość założenia własnego konta za pomocą formularza, następnie ma zostac sprawdzona poprawność wprowadzonych danych',
+                      status: 'To do', priority: 1, epic: Epic.first },
+                    { name: 'Potwierdzenie rejestracji przez e-mail', 
+                      description: 'Chcę aby konta użytkowników były potwierdzane za pośrednictwem e-maila',
+                      status: 'To do', priority: 2, epic: Epic.first },
+                    { name: 'Zarządzanie danymi użykownika', 
+                      description: 'Jako użytkownik chcę mieć dostęp do swoich danych, aby móc je przeglądać oraz edytować',
+                      status: 'To do', priority: 3, epic: Epic.third },
+                    { name: 'Wyszukiwanie wolnych kurierów', 
+                      description: 'Jako użytkownik, chce mieć możlwość wyszukania wolnych kurierów, aby móc przypisać im nowe zadania',
+                      status: 'To do', priority: 1, epic: Epic.fourth }])
 end
 
 def create_sprints
-
-  Sprint.create([{name: 'Przygotowanie dostępu dla użytkownika do korzystania z aplikacji', goal: 'Użytkownik musi mieć możliwość wejścia do apki',
-                  created_by: User.first, started_at: Date.today, ended_at: '6 June 2023'},
-                 {name: 'Przygotowanie dostępu dla użytkownika do korzystania z aplikacji', goal: 'Użytkownik musi mieć możliwość wejścia do apki',
-                  created_by: User.second, started_at: Date.today, ended_at: '6 June 2023'}])
-  
+  Sprint.create([{ name: "Umożliwienie dostępu do apki", goal: "Zakładania kont im się zachciało...",
+                   start_date: Date.today, end_date: Date.today + 6.days },
+                 { name: "Szukajka obijających się kierowców", goal: "Trzeba dać jakąś robotę tym nierobom...",
+                   start_date: Date.today, end_date: Date.today + 4.days }])
 end
 
 def create_tasks
-
-  Task.create([{name: UserStory.first.name, description: UserStory.first.description, status: UserStory.first.status, priority: UserStory.first.priority, comment: UserStory.first.comment,
-                created_by: UserStory.first.created_by, owner: User.first, started_at: Date.today, ended_at: Date.tomorrow, user_story: UserStory.first, sprint: Sprint.first,
-                user: User.first},
-                {name: UserStory.second.name, description: UserStory.second.description, status: UserStory.second.status, priority: UserStory.second.priority, comment: UserStory.second.comment,
-                created_by: UserStory.second.created_by, owner: User.second, started_at: Date.today, ended_at: Date.tomorrow, user_story: UserStory.second, sprint: Sprint.first,
-                user: User.second}])
-  
+  Task.create([ #Project: Project.first, UserStory: UserStory.first, Sprint: Sprint.first
+               { user_story: UserStory.first, sprint: Sprint.first, user: User.first, name: "Background dla funkcjonalności",
+                 description: nil, status: "To do", priority: 1, starts_at: Date.today, ends_at: Date.today + 2.days },
+               { user_story: UserStory.first, sprint: Sprint.first, user: User.first, name: "Utworzenie formularza rejestracji",
+                 description: nil, status: "To do", priority: 2, starts_at: Date.today + 2, ends_at: Date.today + 4.days },
+               { user_story: UserStory.first, sprint: Sprint.first, user: User.first, name: "Walidacja wprowadzonych danych w formularzu",
+                 description: nil, status: "To do", priority: 3, starts_at: Date.today + 4.days, ends_at: Date.today + 6.days },
+                #Project: Project.first, UserStory: UserStory.second, Sprint: Sprint.first
+               { user_story: UserStory.second, sprint: Sprint.first, user: User.second, name: "Wysłanie wiadomości e-mail z linkiem potwierdzającym",
+                 description: nil, status: "To do", priority: 1, starts_at: Date.today, ends_at: Date.today + 2.days },
+               { user_story: UserStory.second, sprint: Sprint.first, user: User.second, name: "Implementacja mechanizmu weryfikacji potwierdzenia rejestracji",
+                 description: nil, status: "To do", priority: 2, starts_at: Date.today + 2.days, ends_at: Date.today + 4.days },
+                #Project: Project.first, UserStory: UserStory.third, Sprint: Sprint.first
+               { user_story: UserStory.third, sprint: Sprint.first, user: User.third, name: "Implementacja systemu logowania użytkownika",
+                 description: nil, status: "To do", priority: 1, starts_at: Date.today, ends_at: Date.today + 2.days },               
+               { user_story: UserStory.third, sprint: Sprint.first, user: User.third, name: "Stworzenie panelu do wyświetlania profilu użytkownika",
+                 description: nil, status: "To do", priority: 2, starts_at: Date.today + 2.days, ends_at: Date.today + 4.days },
+               { user_story: UserStory.third, sprint: Sprint.first, user: User.third, name: "Implementacja mechanizmu zarządzania danymi konta z poziomu panelu",
+                 description: nil, status: "To do", priority: 3, starts_at: Date.today + 4.days, ends_at: Date.today + 6.days },
+                #Project: Project.second, UserStory: UserStory.fourth, Sprint: Sprint.second
+               { user_story: UserStory.fourth, sprint: Sprint.second, user: User.first, name: "Implementacja mechanizmu wyszukiwania kurierów",
+                 description: nil, status: "To do", priority: 1, starts_at: Date.today, ends_at: Date.today + 2.days },               
+               { user_story: UserStory.fourth, sprint: Sprint.second, user: User.first, name: "Implementacja mechanizmu przypisania zlecenia dla kuriera",
+                 description: nil, status: "To do", priority: 2, starts_at: Date.today + 2.days, ends_at: Date.today + 4.days }])
 end
 
 
 ActiveRecord::Base.transaction do
-
   create_users
   create_projects
   create_epics
   create_user_stories  
   create_sprints
   create_tasks
-
 end

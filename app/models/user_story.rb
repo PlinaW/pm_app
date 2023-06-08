@@ -3,7 +3,5 @@ class UserStory < ApplicationRecord
   has_many :tasks
 
   validates :name, presence: true,
-             uniqueness: { case_sensitive: false },
-             length: { maximum: 250 }
-
+             uniqueness: { case_sensitive: false }
 end

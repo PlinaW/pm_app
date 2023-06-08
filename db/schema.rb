@@ -16,34 +16,31 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_30_163102) do
 
   create_table "epics", force: :cascade do |t|
     t.bigint "project_id"
-    t.string "name"
+    t.string "name", null: false
     t.text "description"
-    t.string "type"
+    t.string "context"
     t.string "status"
     t.integer "priority"
-    t.text "comment"
-    t.string "created_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["project_id"], name: "index_epics_on_project_id"
   end
 
   create_table "projects", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.text "description"
     t.string "status"
-    t.date "started_at"
-    t.date "ended_at"
+    t.date "start_date"
+    t.date "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "sprints", force: :cascade do |t|
-    t.string "name"
-    t.text "goal"
-    t.string "created_by"
-    t.date "started_at"
-    t.date "ended_at"
+    t.string "name", null: false
+    t.string "goal"
+    t.date "start_date"
+    t.date "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -56,11 +53,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_30_163102) do
     t.text "description"
     t.string "status"
     t.integer "priority"
-    t.text "comment"
-    t.string "created_by"
-    t.string "owner"
-    t.datetime "started_at"
-    t.datetime "ended_at"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["sprint_id"], name: "index_tasks_on_sprint_id"
@@ -70,12 +64,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_30_163102) do
 
   create_table "user_stories", force: :cascade do |t|
     t.bigint "epic_id"
-    t.string "name"
+    t.string "name", null: false
     t.text "description"
     t.string "status"
     t.integer "priority"
-    t.text "comment"
-    t.string "created_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["epic_id"], name: "index_user_stories_on_epic_id"

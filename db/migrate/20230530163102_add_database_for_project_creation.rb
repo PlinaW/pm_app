@@ -1,43 +1,38 @@
 class AddDatabaseForProjectCreation < ActiveRecord::Migration[7.0]
   def change
     create_table :projects do |t|
-      t.string :name, unique: true
+      t.string :name, null: false
       t.text :description
       t.string :status
-      t.date :started_at
-      t.date :ended_at
+      t.date :start_date
+      t.date :end_date
       t.timestamps
     end
 
     create_table :epics do |t|
       t.references :project, index: true, foreign_key: true
-      t.string :name, unique: true
+      t.string :name, null: false
       t.text :description
-      t.string :type
+      t.string :context
       t.string :status
       t.integer :priority
-      t.text :comment
-      t.string :created_by
       t.timestamps
     end 
 
     create_table :user_stories do |t|
       t.references :epic, index: true, foreign_key: true
-      t.string :name, unique: true
+      t.string :name, null: false
       t.text :description
       t.string :status
       t.integer :priority
-      t.text :comment
-      t.string :created_by
       t.timestamps
     end 
   
     create_table :sprints do |t|
-      t.string :name, unique: true
-      t.text :goal
-      t.string :created_by
-      t.date :started_at
-      t.date :ended_at
+      t.string :name, null: false
+      t.string :goal
+      t.date :start_date
+      t.date :end_date
       t.timestamps
     end 
     
@@ -49,13 +44,9 @@ class AddDatabaseForProjectCreation < ActiveRecord::Migration[7.0]
       t.text :description
       t.string :status
       t.integer :priority
-      t.text :comment
-      t.string :created_by
-      t.string :owner
-      t.datetime :started_at
-      t.datetime :ended_at
+      t.datetime :starts_at
+      t.datetime :ends_at
       t.timestamps
     end 
-
   end
 end

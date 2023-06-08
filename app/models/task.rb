@@ -4,6 +4,6 @@ class Task < ApplicationRecord
   belongs_to :user_story
 
   validates :name, presence: true,
-             uniqueness: { case_sensitive: false },
-             length: { maximum: 100 }
+             uniqueness: { case_sensitive: false }
+  validates :ends_at, comparison: { greater_than: :starts_at }
 end
