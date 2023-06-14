@@ -1,11 +1,7 @@
 class Project < ApplicationRecord
-  has_one :product_backlog
-  has_many :sprint_backlogs, through: :product_backlog
-  has_many :features, through: :product_backlog
-  has_many :user_stories, through: :product_backlog
-  has_many :project_members
-  has_many :users, through: :project_members
+  has_many :epics, dependent: :destroy
 
-  validates :name, presence: true
-
+  validates :name, presence: true,
+                   uniqueness: { case_sensitive: false }
+  validates :end_date, comparison: { greater_than: :start_date }
 end

@@ -10,74 +10,67 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_25_213217) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_30_163102) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "features", force: :cascade do |t|
-    t.string "name"
+  create_table "epics", force: :cascade do |t|
+    t.bigint "project_id"
+    t.string "name", null: false
     t.text "description"
-    t.bigint "product_backlog_id", null: false
-    t.integer "priority"
+    t.string "context"
     t.string "status"
-    t.datetime "start_date"
-    t.datetime "end_date"
+    t.integer "priority"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "sprint_backlog_id"
-    t.index ["product_backlog_id"], name: "index_features_on_product_backlog_id"
-    t.index ["sprint_backlog_id"], name: "index_features_on_sprint_backlog_id"
-  end
-
-  create_table "product_backlogs", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.bigint "project_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["project_id"], name: "index_product_backlogs_on_project_id"
-  end
-
-  create_table "project_members", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "project_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["project_id"], name: "index_project_members_on_project_id"
-    t.index ["user_id"], name: "index_project_members_on_user_id"
+    t.index ["project_id"], name: "index_epics_on_project_id"
   end
 
   create_table "projects", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.text "description"
     t.string "status"
-    t.datetime "start_date"
-    t.datetime "end_date"
+    t.date "start_date"
+    t.date "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "sprint_backlogs", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.datetime "start_date"
-    t.datetime "end_date"
-    t.bigint "product_backlog_id", null: false
+  create_table "sprints", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "goal"
+    t.date "start_date"
+    t.date "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["product_backlog_id"], name: "index_sprint_backlogs_on_product_backlog_id"
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.bigint "user_story_id"
+    t.bigint "sprint_id"
+    t.bigint "user_id"
+    t.string "name"
+    t.text "description"
+    t.string "status"
+    t.integer "priority"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sprint_id"], name: "index_tasks_on_sprint_id"
+    t.index ["user_id"], name: "index_tasks_on_user_id"
+    t.index ["user_story_id"], name: "index_tasks_on_user_story_id"
   end
 
   create_table "user_stories", force: :cascade do |t|
-    t.string "name"
+    t.bigint "epic_id"
+    t.string "name", null: false
     t.text "description"
-    t.integer "priority"
-    t.integer "points"
     t.string "status"
-    t.bigint "feature_id", null: false
+    t.integer "priority"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["feature_id"], name: "index_user_stories_on_feature_id"
+    t.index ["epic_id"], name: "index_user_stories_on_epic_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -94,11 +87,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_25_213217) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "features", "product_backlogs"
-  add_foreign_key "features", "sprint_backlogs"
-  add_foreign_key "product_backlogs", "projects"
-  add_foreign_key "project_members", "projects"
-  add_foreign_key "project_members", "users"
-  add_foreign_key "sprint_backlogs", "product_backlogs"
-  add_foreign_key "user_stories", "features"
+  add_foreign_key "epics", "projects"
+  add_foreign_key "tasks", "sprints"
+  add_foreign_key "tasks", "user_stories"
+  add_foreign_key "tasks", "users"
+  add_foreign_key "user_stories", "epics"
 end

@@ -1,7 +1,7 @@
 class UserStory < ApplicationRecord
-  belongs_to :feature
-  has_many :project_members, through: :feature
+  belongs_to :epic
+  has_many :tasks
 
-  validates :name, presence: true
-
+  validates :name, presence: true,
+             uniqueness: { case_sensitive: false }
 end
