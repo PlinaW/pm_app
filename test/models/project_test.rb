@@ -21,8 +21,8 @@ class ProjectTest < ActiveSupport::TestCase
   end
 
   test 'project start_date should not be greater than end_date' do
-    @project.start_date = Date.tomorrow
-    @project.end_date = Date.yesterday
+    @project.update(start_date: Date.tomorrow)
+    @project.update(end_date: Date.yesterday)
     assert_not @project.valid?
   end
 

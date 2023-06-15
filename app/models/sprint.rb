@@ -1,9 +1,8 @@
 class Sprint < ApplicationRecord
+  include Timeable
   has_many :tasks, dependent: :nullify
 
   validates :name, presence: true,
              uniqueness: { case_sensitive: false }
-  validates :start_date, comparison: { less_than: :end_date }, allow_blank: true
-  # This probably needs to be changed in the future
-  # to allow to also specify start_date without end_date
+  validate :start_date_less_than_end_date?
 end
