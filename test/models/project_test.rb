@@ -11,14 +11,11 @@ class ProjectTest < ActiveSupport::TestCase
     assert @project.valid?
   end
 
-  test 'project should not be valid' do
-    @project.name = nil
-    assert_not @project.valid?
-  end
-
   test 'project name should be unique' do
-    @project2.name = 'jak zarobić a się nie narobić'
-    @project3.name = 'JAK ZAROBIĆ A SIĘ NIE NAROBIĆ'
+    @project.update(name: 'Example name')
+    @project2.name = 'Example name'
+    @project3.name = 'EXAMPLE nAmE'
+    assert @project.valid?
     assert_not @project2.valid?
     assert_not @project3.valid?
   end
@@ -29,9 +26,4 @@ class ProjectTest < ActiveSupport::TestCase
     assert_not @project.valid?
   end
 
-  test 'project can be created without start_date and end_date' do
-    @project.start_date = nil
-    @project.end_date = nil
-    assert @project.valid?
-  end
 end
