@@ -1,13 +1,8 @@
 module Timeable
   extend ActiveSupport::Concern
 
-  included do
-    scope :start_date, -> { where(start_date: true) }
-    scope :end_date, -> { where(end_date: true) }
-  end
-
   def start_date_less_than_end_date?
-    return unless start_date && end_date
+    return unless !start_date.nil? && !end_date.nil?
 
     errors.add(:start_date, 'can\'t be less than end date') if end_date < start_date
   end
