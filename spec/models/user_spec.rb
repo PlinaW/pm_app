@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  it 'can run tests' do
-    expect(false).to be(false)
+  it 'first_name is MyString' do
+    user = create(:user)
+    expect(user.first_name).to eq('MyString')
   end
 end
