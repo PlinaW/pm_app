@@ -1,0 +1,26 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# This model initially had no columns defined. If you add columns to the
+# model remove the "{}" from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+
+project_management:
+  name: Jak zarobić a się nie narobić
+  description: Aplikacja do zarządzania projektami
+  status: pending
+  start_date: <%= Date.today.strftime("%Y-%m-%d") %>
+  end_date: <%= (Date.today + 6.months).strftime("%Y-%m-%d")%>
+
+project_courier:
+  name: Gdybym miał 4 ręce i 2 busy
+  description: Aplikacja dla kurierów
+  status: pending
+  start_date: <%= Date.today.strftime("%Y-%m-%d") %>
+  end_date: <%= (Date.today + 4.months).strftime("%Y-%m-%d")%>
+
+project_doctor:
+  name: Mój prywatny lekarz
+  description: Aplikacja do szukania lekarzy
+  status: pending
+  start_date: <%= Date.today.strftime("%Y-%m-%d") %>
+  end_date: <%= (Date.today + 10.months).strftime("%Y-%m-%d")%>

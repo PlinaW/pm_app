@@ -1,0 +1,27 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# This model initially had no columns defined. If you add columns to the
+# model remove the "{}" from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+
+user_story_user_account_project_management:
+  name: Tworzenie konta użytkownika
+  description: Tworzenie konta za pomocą formularza
+  status: To do
+  priority: 1
+  epic: epic_register_project_management
+
+user_story_data_management_project_management:
+  name: Zarządzanie danymi użytkownika
+  description: Przeglądanie i edytowanie danych użytkownika
+  status: To do
+  priority: 2
+  epic: epic_register_project_management
+
+user_story_user_account_project_courier:
+  name: Tworzenie konta użytkownika
+  description: Tworzenie konta za pomocą formularza
+  status: To do
+  priority: 1
+  epic: epic_register_project_courier

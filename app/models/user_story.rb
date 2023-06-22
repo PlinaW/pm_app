@@ -3,5 +3,6 @@ class UserStory < ApplicationRecord
   has_many :tasks
 
   validates :name, presence: true,
-             uniqueness: { case_sensitive: false }
+             uniqueness: { scope: :epic_id, case_sensitive: false }
+  validates :priority, presence: true, uniqueness: { scope: :epic_id }, allow_blank: true
 end
