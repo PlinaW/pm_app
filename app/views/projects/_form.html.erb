@@ -1,4 +1,6 @@
-<%= form_with model: @project do |form| %>
+<%= render 'shared/errors_validation', obj: @project%>
+
+<%= form_with model: @project, data: { turbo: false } do |form| %>
   <div>
     <%= form.label :name %><br>
     <%= form.text_field :name %>
