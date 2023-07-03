@@ -1,5 +1,6 @@
 class Project < ApplicationRecord
   include Timeable
+  include Status
   has_many :epics, dependent: :destroy
 
   validates :name, presence: true,
