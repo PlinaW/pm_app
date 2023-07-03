@@ -1,12 +1,12 @@
 class ProjectsController < ApplicationController
 
+  before_action :set_project, except: %i[index new create]
+
   def index
     @projects = Project.all
   end
 
-  def show
-    @project = Project.find(params[:id])
-  end
+  def show; end
 
   def new
     @project = Project.new
@@ -21,12 +21,9 @@ class ProjectsController < ApplicationController
     end
   end
 
-  def edit
-    @project = Project.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @project = Project.find(params[:id])
     if @project.update(project_params)
       redirect_to @project
     else
@@ -35,12 +32,15 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    @project = Project.find(params[:id])
     @project.destroy
     redirect_to projects_path
   end
 
   private
+
+  def set_project
+    @project = Project.find(params[:id])
+  end
 
   def project_params
     params.require(:project).permit(:name,
