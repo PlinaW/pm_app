@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
-  layout 'devise'
+  layout 'layouts/devise/devise'
   skip_before_action :authenticate_user!, only: [:index]
   before_action :redirect_logged_in_users
 
