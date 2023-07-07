@@ -56,6 +56,9 @@ gem 'bootsnap', require: false
 # Adding the devise gem to enable user authentication
 gem 'devise'
 
+# Use Slim
+gem 'slim'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]
