@@ -72,7 +72,7 @@ section.dark:bg-gray-900.p-3.sm:p-5
             - @projects.each do |project|
               tr.border-b.dark:border-gray-700
                 th.px-4.py-3.font-medium.text-gray-900.whitespace-nowrap.dark:text-white[scope="row"]
-                  = project.name
+                  = link_to project.name, project_path(project) 
                 td.px-4.py-3
                   = project.status
                 td.px-4.py-3
