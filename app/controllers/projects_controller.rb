@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   before_action :set_project, except: %i[index new create]
 
   def index
-    @projects = Project.paginate(page: params[:page], per_page: 1)
+    @projects = Project.paginate(page: params[:page], per_page: 5)
   end
 
   def show; end
