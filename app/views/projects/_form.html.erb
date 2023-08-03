@@ -1,3 +1,6 @@
+<div class="max-w-2xl m-auto">
+  <%= render 'shared/errors_validation', obj: @project%>
+</div>
 <section>
   <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0">
     <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
@@ -5,7 +8,6 @@
         <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
             <%= @project.new_record? ? "Create a new project" : "Edit project" %>
         </h1>
-        <%= render 'shared/errors_validation', obj: @project%>
         <%= form_with model: @project, data: { turbo: false } do |form| %>
           <div class="space-y-4 md:space-y-6">
             <div>
