@@ -12,15 +12,14 @@
   </head>
 
   <body>
-    <%= render 'layouts/navbar'%>
-    <%= render 'layouts/sidebar'%>
+    <%= render 'layouts/devise/navbar_devise' %>
 
-    <main class="md:ml-64 h-screen pt-5 md:pt-20 ">
+    <main class="container mx-auto mt-28 px-5 flex-1">
       <div class="max-w-2xl m-auto">
         <%= render 'layouts/messages'%>
       </div>
       <%= yield %>
     </main>
-    
+
   </body>
 </html>

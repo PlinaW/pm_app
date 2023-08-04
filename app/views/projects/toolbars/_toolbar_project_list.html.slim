@@ -1,0 +1,28 @@
+.antialiased.bg-gray-50.dark:bg-gray-900
+  nav.bg-white.border-b.border-gray-200.px-4.py-2.5.dark:bg-gray-800.dark:border-gray-700
+    .flex.flex-wrap.justify-between.items-center
+      .flex.justify-start.items-center
+        a.flex.items-center.justify-between.mr-4[href="#"]
+          / img.mr-3.h-8[src="#" alt="PmApp Logo"]
+          span.self-center.text-2xl.font-semibold.whitespace-nowrap.dark:text-white
+            | All projects
+      .flex.items-center.lg:order-2
+        button.flex.mx-3.text-sm.rounded-full.md:mr-0.focus:ring-4.focus:ring-gray-300.dark:focus:ring-gray-600[type="button" aria-expanded="false" data-dropdown-toggle="dropdown_toolbar"]
+          span.sr-only
+            | Open toolbar menu
+          svg[width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"]
+            path[d="M6.48999 12H6.49999M12.5 12H12.51M18.5 12H18.51" stroke="#2F2F38" stroke-width="3" stroke-linecap="round"]
+        #dropdown_toolbar.hidden.z-50.my-4.w-56.text-base.list-none.bg-white.rounded.divide-y.divide-gray-100.shadow.dark:bg-gray-700.dark:divide-gray-600.rounded-xl
+          .py-3.px-4
+            span.block.text-sm.font-semibold.text-gray-900.dark:text-white
+              | Placeholder
+            span.block.text-sm.text-gray-900.truncate.dark:text-white
+              | Placeholder
+          ul.py-1.text-gray-700.dark:text-gray-300[aria-labelledby="dropdown"]
+            li = link_to 'Placeholder', '#', class: "block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
+            li = link_to 'Placeholder', '#', class: "block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
+          ul.py-1.text-gray-700.dark:text-gray-300[aria-labelledby="dropdown"]
+            li
+              = link_to "Placeholder", '#', class: "block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white", data: { "turbo-method": :delete }
+
+

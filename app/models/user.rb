@@ -7,4 +7,10 @@ class User < ApplicationRecord
   has_many :tasks, dependent: :nullify
 
   validates :first_name, :last_name, presence: true
+
+  def full_name
+    return "#{first_name} #{last_name}" if first_name || last_name
+
+    'Anonymous'
+  end
 end
