@@ -1,10 +1,10 @@
 FactoryBot.define do
   factory :epic do
+    association :project
     sequence(:name) { |n| "test name#{n}" }
     description { 'test description' }
-    priority { 1 }
+    sequence(:priority) { |n| n }
     context { 'feature' }
     status { 'pending' }
-    project factory: :project
   end
 end
