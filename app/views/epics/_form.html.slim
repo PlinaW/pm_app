@@ -1,0 +1,35 @@
+.max-w-2xl.m-auto
+  = render 'shared/errors_validation', obj: @epic
+
+section
+  .flex.flex-col.items-center.justify-center.px-6.py-8.mx-auto.lg:py-0
+    .w-full.bg-white.rounded-lg.shadow.dark:border.md:mt-0.sm:max-w-md.xl:p-0.dark:bg-gray-800.dark:border-gray-700
+      .p-6.space-y-4.md:space-y-6.sm:p-8
+        h1.text-xl.font-bold.leading-tight.tracking-tight.text-gray-900.md:text-2xl.dark:text-white
+          = @epic.new_record? ? "Create a new epic" : "Edit epic"
+        = form_with model: @epic, data: { turbo: false } do |form|
+          .space-y-4.md:space-y-6
+            .
+              = form.label :name, class:"#{label_class}" 
+              = form.text_field :name, autofocus: true, class:"#{text_field_input}", placeholder:"Epic name" 
+            .
+              = form.label :description, class:"#{label_class}" 
+              = form.text_area :description, rows:3, class:"#{text_area_input}", placeholder:"Description..." 
+            .
+              = form.label :project, class:"#{label_class}" 
+              = form.collection_select :project_id, @projects, :id, :name, { prompt: "Select project"}, { class: "#{select_input}" }
+            .
+              = form.label :status, class:"#{label_class}" 
+              = form.select :status, ['active', 'suspended', 'ended'], {prompt: "Select status"}, {class:"#{select_input}" }
+            .
+              = form.label :priority, class:"#{label_class}" 
+              = form.select :priority, (1..10).to_a, { prompt: "Select priority" }, {class:"#{select_input}" } 
+            .
+              = form.label :start_date, class:"#{label_class}" 
+              = form.date_select :start_date, {}, {class:"#{date_select_input}" } 
+            .
+              = form.label :end_date, class:"#{label_class}"
+              = form.date_select :end_date, {}, {class:"#{date_select_input}" } 
+            .
+              = form.submit (@epic.new_record? ? "Create epic" : "Update epic"), class:"#{form_submit_btn}" 
+              = link_to "Back", epics_path, class:"#{form_back_btn} mt-4" 

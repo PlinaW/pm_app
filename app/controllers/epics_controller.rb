@@ -9,10 +9,12 @@ class EpicsController < ApplicationController
   def show; end
 
   def new
+    @projects = Project.all
     @epic = Epic.new
   end
 
   def create
+    @projects = Project.all
     @epic = Epic.new(epic_params)
     if @epic.save
       redirect_to @epic
@@ -43,6 +45,12 @@ class EpicsController < ApplicationController
   end
 
   def epic_params
-    params.require(:epic).permit
+    params.require(:epic).permit(:name,
+                                 :description,
+                                 :project_id,
+                                 :status,
+                                 :priority,
+                                 :start_date,
+                                 :end_date)
   end
 end
