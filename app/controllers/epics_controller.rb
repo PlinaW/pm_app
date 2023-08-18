@@ -23,9 +23,12 @@ class EpicsController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    @projects = Project.all
+  end
 
   def update
+    @projects = Project.all
     if @epic.update(epic_params)
       redirect_to @epic
     else
