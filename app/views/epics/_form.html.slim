@@ -21,10 +21,7 @@ section
             .
               = form.label :status, class:"#{label_class}" 
               = form.select :status, ['active', 'suspended', 'ended'], {prompt: "Select status"}, {class:"#{select_input}" }
-            .
-              = form.label :priority, class:"#{label_class}" 
-              = form.select :priority, (1..10).to_a, { prompt: "Select priority" }, {class:"#{select_input}" } 
-            .
+            .            .
               = form.label :start_date, class:"#{label_class}" 
               = form.date_select :start_date, {}, {class:"#{date_select_input}" } 
             .
