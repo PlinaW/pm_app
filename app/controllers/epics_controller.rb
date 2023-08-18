@@ -52,7 +52,6 @@ class EpicsController < ApplicationController
                                  :description,
                                  :project_id,
                                  :status,
-                                 :priority,
                                  :start_date,
                                  :end_date)
   end
