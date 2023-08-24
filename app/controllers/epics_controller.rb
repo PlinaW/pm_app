@@ -6,7 +6,9 @@ class EpicsController < ApplicationController
     @epics = Epic.paginate(page: params[:page], per_page: 5)
   end
 
-  def show; end
+  def show
+    @user_stories = UserStory.where(epic: @epic)
+  end
 
   def new
     @projects = Project.all
