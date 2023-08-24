@@ -3,8 +3,6 @@ FactoryBot.define do
     association :project
     sequence(:name) { |n| "test name#{n}" }
     description { 'test description' }
-    sequence(:priority) { |n| n }
-    context { 'feature' }
     status { 'pending' }
   end
 end

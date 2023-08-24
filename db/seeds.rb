@@ -17,13 +17,13 @@ end
 def create_epics  
   Epic.create([{ name: 'Funkcjonalność rejestracji nowych użytkowników', 
                  description: 'Użytkownik ma mieć możliwość stworzenia swojego konta, które będzie zawierało dane użytkownika i umożliwiało mu korzystanie z aplikacji.', 
-                 priority: 1, context: 'feature', status: 'pending', project: Project.first },
+                 priority: 1, status: 'pending', project: Project.first },
                { name: 'Funkcjonalnoścć logowania użytkowników', description: 'Użytkownik ma mieć możlwiość zalogowania do konta', 
-                 priority: 2, context: 'feature', status: 'pending', project: Project.first },
+                 priority: 2, status: 'pending', project: Project.first },
                { name: 'Możliwość przeglądania i edytowania konta użytkownika', description: 'Użytkownik ma mieć możlwiość przeglądania oraz edytowania konta', 
-                 priority: 3, context: 'feature', status: 'pending', project: Project.first },
+                 priority: 3, status: 'pending', project: Project.first },
                { name: 'Funkcjonalność tworzenia zleceń dla kurierów', description: 'Użytkownik ma mieć możlwiość przypisania zlecenia kurierowi z wolnymi przebiegami', 
-                 priority: 1, context: 'feature', status: 'pending', project: Project.second }])
+                 priority: 1, status: 'pending', project: Project.second }])
 end
 
 def create_user_stories

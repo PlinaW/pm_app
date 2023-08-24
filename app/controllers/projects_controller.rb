@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
 
-  before_action :set_project, except: %i[index new create]
+  before_action :set_project, only: %i[show edit update destroy]
 
   def index
     @projects = Project.paginate(page: params[:page], per_page: 5)
