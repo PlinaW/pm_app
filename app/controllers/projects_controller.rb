@@ -1,12 +1,14 @@
 class ProjectsController < ApplicationController
-
+  layout 'project', except: %i[show]
   before_action :set_project, only: %i[show edit update destroy]
 
   def index
     @projects = Project.paginate(page: params[:page], per_page: 5)
   end
 
-  def show; end
+  def show
+    @epics = Epic.all
+  end
 
   def new
     @project = Project.new
