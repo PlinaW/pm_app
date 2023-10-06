@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   get 'home', to: 'pages#index' 
   resources :projects
   resources :epics
+  resources :user_stories
 end

@@ -8,18 +8,18 @@
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="space-y-4 md:space-y-6">
             <div class="field">
-              <%= f.label :email, class:"#{label_class}" %>
-              <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"#{text_field_input}", placeholder:"name@company.com" %>
+              <%= f.label :email, class:"#{form_label_css}" %>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"#{text_field_input_css}", placeholder:"name@company.com" %>
             </div>
             <div class="field">
-              <%= f.label :password, class:"#{label_class}" %>
-              <%= f.password_field :password, autocomplete: "current-password", class:"#{text_field_input}", placeholder:"••••••••" %>
+              <%= f.label :password, class:"#{form_label_css}" %>
+              <%= f.password_field :password, autocomplete: "current-password", class:"#{text_field_input_css}", placeholder:"••••••••" %>
             </div>
             <div class="flex items-center justify-between">
               <div class="flex items-start">
                 <% if devise_mapping.rememberable? %>
                   <div class="field">
-                    <%= f.check_box :remember_me, class:"#{check_box_input}" %>
+                    <%= f.check_box :remember_me, class:"#{form_check_box_input_css}" %>
                     <%= f.label :remember_me, class:"text-gray-500 dark:text-gray-300" %>
                   </div>
                 <% end %>
@@ -27,7 +27,7 @@
               <a href="#" class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</a>
             </div>
             <div class="actions">
-              <%= f.submit "Log in", class:"#{form_submit_btn}" %>
+              <%= f.submit "Log in", class:"#{form_submit_btn_css}" %>
             </div>
             <p class="text-sm font-light text-gray-500 dark:text-gray-400">
               Don’t have an account yet? <%= link_to 'Sign up', new_user_registration_path, class:"font-medium text-primary-600 hover:underline dark:text-primary-500" %>

@@ -3,20 +3,24 @@ class EpicsController < ApplicationController
   before_action :set_epic, only: %i[show edit update destroy]
 
   def index
-    @epics = Epic.paginate(page: params[:page], per_page: 5)
+    if params[:project_id].present?
+      @project = Project.find(params[:project_id])
+      @epics = @project.epics.paginate(page: params[:page], per_page: 5)
+    else
+      @epics = Epic.paginate(page: params[:page], per_page: 5)
+    end
   end
 
   def show
+    @project = @epic.project
     @user_stories = UserStory.where(epic: @epic)
   end
 
   def new
-    @projects = Project.all
     @epic = Epic.new
   end
 
   def create
-    @projects = Project.all
     @epic = Epic.new(epic_params)
     if @epic.save
       redirect_to @epic
@@ -25,12 +29,9 @@ class EpicsController < ApplicationController
     end
   end
 
-  def edit
-    @projects = Project.all
-  end
+  def edit; end
 
   def update
-    @projects = Project.all
     if @epic.update(epic_params)
       redirect_to @epic
     else
