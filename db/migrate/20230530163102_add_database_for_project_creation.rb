@@ -19,7 +19,7 @@ class AddDatabaseForProjectCreation < ActiveRecord::Migration[7.0]
       t.timestamps
     end 
 
-    create_table :user_stories do |t|
+    create_table :issues do |t|
       t.references :epic, index: true, foreign_key: true
       t.string :name, null: false
       t.text :description
@@ -37,7 +37,7 @@ class AddDatabaseForProjectCreation < ActiveRecord::Migration[7.0]
     end 
     
     create_table :tasks do |t|
-      t.references :user_story, index: true, foreign_key: true
+      t.references :issue, index: true, foreign_key: true
       t.references :sprint, index: true, foreign_key: true
       t.references :user, index: true, foreign_key: true
       t.string :name

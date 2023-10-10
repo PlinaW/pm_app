@@ -2,7 +2,7 @@ class Epic < ApplicationRecord
   include Timeable
   include Status
   belongs_to :project
-  has_many :user_stories, dependent: :destroy
+  has_many :issues, dependent: :destroy
 
   validates :name, presence: true,
                    uniqueness: { scope: :project_id, case_sensitive: false }

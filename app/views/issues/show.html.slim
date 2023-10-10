@@ -1,15 +1,15 @@
 .grid.grid-cols-1.px-4.pt-6.xl:grid-cols-3.xl:gap-4.dark:bg-gray-900
   .mb-4.col-span-full.xl:mb-2
     /Topbar_card
-    = render partial: 'user_stories/show/breadcrumb'
-    = render partial: 'user_stories/show/topbar_card'
+    = render partial: 'issues/show/breadcrumb'
+    = render partial: 'issues/show/topbar_card'
   / Description & task_table
   .col-span-2
     .pt-4.mb-8.bg-white.col-span-2.dark:border-gray-700.dark:bg-gray-800
       .mb-4.text-lg.font-semibold.dark:text-white
         | Description:
       .text-sm
-        = @user_story.description
+        = @issue.description
     /Task_table
     .pt-4.mb-4.bg-white.col-span-2.dark:border-gray-700.dark:bg-gray-800
       .mb-4.text-lg.font-semibold.dark:text-white
@@ -32,4 +32,4 @@
                   .py-1
                     = link_to "Delete", '#', class: "block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }
   /Details_card
-  = render partial: 'user_stories/show/details_card'
+  = render partial: 'issues/show/details_card'

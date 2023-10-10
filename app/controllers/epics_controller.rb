@@ -13,7 +13,7 @@ class EpicsController < ApplicationController
 
   def show
     @project = @epic.project
-    @user_stories = UserStory.where(epic: @epic)
+    @issues = Issue.where(epic: @epic)
   end
 
   def new

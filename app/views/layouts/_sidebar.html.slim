@@ -22,7 +22,7 @@ aside.md:fixed.top-0.left-0.w-full.md:w-64.md:h-screen.pt-14.bg-white.border-r.b
               |Project
             li = link_to epics_path(project_id: @project), class:"#{sidebar_second_btn_css}" do
               |Epics
-            li = link_to user_stories_path(project_id: @project), class:"#{sidebar_second_btn_css}" do
+            li = link_to issues_path(project_id: @project), class:"#{sidebar_second_btn_css}" do
               |User stories
     ul.space-y-1.my-1.pt-1 
       - unless current_page?(home_path)

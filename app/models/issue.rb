@@ -1,4 +1,4 @@
-class UserStory < ApplicationRecord
+class Issue < ApplicationRecord
   belongs_to :epic
   has_many :tasks
 

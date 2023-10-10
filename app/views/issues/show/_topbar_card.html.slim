@@ -1,15 +1,15 @@
 .flex.justify-between.md:space-x-3.flex-shrink-0
   h1.text-xl.font-semibold.text-gray-900.sm:text-2xl.dark:text-white
-    = @user_story.name
-    button.mx-3.text-sm.rounded-full.md:mr-0.focus:ring-4.focus:ring-gray-300.dark:focus:ring-gray-600[type="button" aria-expanded="false" data-dropdown-toggle="dropdown-user_story"]
+    = @issue.name
+    button.mx-3.text-sm.rounded-full.md:mr-0.focus:ring-4.focus:ring-gray-300.dark:focus:ring-gray-600[type="button" aria-expanded="false" data-dropdown-toggle="dropdown-issue"]
       span.sr-only
         | Open toolbar menu
       svg[width="20" height="20" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"]
         path[d="M19.4339 8.235C19.2825 7.86944 19.0262 7.55698 18.6972 7.33715C18.3683 7.11731 17.9815 6.99998 17.5859 7H6.41388C6.01838 7.00008 5.63178 7.11743 5.30296 7.3372C4.97414 7.55697 4.71786 7.86929 4.56652 8.23469C4.41518 8.60009 4.37558 9.00216 4.45271 9.39006C4.52985 9.77797 4.72026 10.1343 4.99988 10.414L10.5859 16C10.9609 16.3749 11.4696 16.5856 11.9999 16.5856C12.5302 16.5856 13.0388 16.3749 13.4139 16L18.9999 10.414C19.2795 10.1344 19.47 9.77816 19.5473 9.39031C19.6245 9.00246 19.5851 8.60042 19.4339 8.235Z" fill="#2F2F38"]
-    #dropdown-user_story.hidden.z-50.my-4.w-56.text-base.list-none.bg-white.rounded.divide-y.divide-gray-100.shadow.dark:bg-gray-700.dark:divide-gray-600.rounded-xl
+    #dropdown-issue.hidden.z-50.my-4.w-56.text-base.list-none.bg-white.rounded.divide-y.divide-gray-100.shadow.dark:bg-gray-700.dark:divide-gray-600.rounded-xl
       ul.py-1.text-gray-700.dark:text-gray-300[aria-labelledby="dropdown"]
-        li.border-b = link_to 'Edit', edit_user_story_path, class: "block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
-        li = link_to 'Delete', user_story_path, class: "block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }
+        li.border-b = link_to 'Edit', edit_issue_path, class: "block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
+        li = link_to 'Delete', issue_path, class: "block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }
   .hidden.xl:block
     .flex.items-center.space-x-3.w-full.md:w-auto.xl:pr-8
       = link_to edit_epic_path, class: "#{edit_btn_css} " do

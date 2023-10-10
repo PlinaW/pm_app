@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_18_130432) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_10_183813) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -24,6 +24,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_18_130432) do
     t.date "start_date"
     t.date "end_date"
     t.index ["project_id"], name: "index_epics_on_project_id"
+  end
+
+  create_table "issues", force: :cascade do |t|
+    t.bigint "epic_id"
+    t.string "name", null: false
+    t.text "description"
+    t.string "status"
+    t.integer "priority"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["epic_id"], name: "index_issues_on_epic_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -46,7 +57,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_18_130432) do
   end
 
   create_table "tasks", force: :cascade do |t|
-    t.bigint "user_story_id"
+    t.bigint "issue_id"
     t.bigint "sprint_id"
     t.bigint "user_id"
     t.string "name"
@@ -59,18 +70,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_18_130432) do
     t.datetime "updated_at", null: false
     t.index ["sprint_id"], name: "index_tasks_on_sprint_id"
     t.index ["user_id"], name: "index_tasks_on_user_id"
-    t.index ["user_story_id"], name: "index_tasks_on_user_story_id"
-  end
-
-  create_table "user_stories", force: :cascade do |t|
-    t.bigint "epic_id"
-    t.string "name", null: false
-    t.text "description"
-    t.string "status"
-    t.integer "priority"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["epic_id"], name: "index_user_stories_on_epic_id"
+    t.index ["issue_id"], name: "index_tasks_on_issue_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -88,8 +88,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_18_130432) do
   end
 
   add_foreign_key "epics", "projects"
+  add_foreign_key "issues", "epics"
+  add_foreign_key "tasks", "issues", column: "issue_id"
   add_foreign_key "tasks", "sprints"
-  add_foreign_key "tasks", "user_stories"
   add_foreign_key "tasks", "users"
-  add_foreign_key "user_stories", "epics"
 end
