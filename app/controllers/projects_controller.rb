@@ -1,9 +1,10 @@
 class ProjectsController < ApplicationController
   layout 'project', except: %i[show]
   before_action :set_project, only: %i[show edit update destroy]
+  before_action :authorize_project_users, only: %i[show edit update destroy]
 
   def index
-    @projects = Project.paginate(page: params[:page], per_page: 5)
+    @projects = current_user.projects.paginate(page: params[:page], per_page: 5)
   end
 
   def show
@@ -17,6 +18,7 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     if @project.save
+      @project.project_users.create(user: current_user, role: 'admin')
       redirect_to @project
     else
       render :new
@@ -42,6 +44,13 @@ class ProjectsController < ApplicationController
 
   def set_project
     @project = Project.find(params[:id])
+  end
+
+  def authorize_project_users
+    return if @project.users.include? current_user
+
+    redirect_to projects_path,
+                alert: 'You are not a member of this project'
   end
 
   def project_params
