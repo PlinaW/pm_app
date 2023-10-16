@@ -1,29 +1,24 @@
 class EpicsController < ApplicationController
 
+  before_action :set_current_project
   before_action :set_epic, only: %i[show edit update destroy]
 
   def index
-    if params[:project_id].present?
-      @project = Project.find(params[:project_id])
-      @epics = @project.epics.paginate(page: params[:page], per_page: 5)
-    else
-      @epics = Epic.paginate(page: params[:page], per_page: 5)
-    end
+    @epics = @current_project.epics.paginate(page: params[:page], per_page: 5)
   end
 
   def show
-    @project = @epic.project
     @issues = Issue.where(epic: @epic)
   end
 
   def new
-    @epic = Epic.new
+    @epic = @current_project.epics.new
   end
 
   def create
-    @epic = Epic.new(epic_params)
+    @epic = @current_project.epics.new(epic_params)
     if @epic.save
-      redirect_to @epic
+      redirect_to project_epic_path(@current_project, @epic)
     else
       render :new
     end
@@ -33,7 +28,7 @@ class EpicsController < ApplicationController
 
   def update
     if @epic.update(epic_params)
-      redirect_to @epic
+      redirect_to project_epic_path(@current_project, @epic)
     else
       render :edit
     end
@@ -41,13 +36,17 @@ class EpicsController < ApplicationController
 
   def destroy
     @epic.destroy
-    redirect_to epics_path
+    redirect_to project_epics_path
   end
 
   private
 
   def set_epic
-    @epic = Epic.find(params[:id])
+    @epic = @current_project.epics.find_by(id: params[:id])
+    return unless @epic.nil?
+
+    flash[:alert] = "This epic doesn't exist in this project"
+    redirect_to project_epics_path(@current_project)
   end
 
   def epic_params
