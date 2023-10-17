@@ -1,8 +1,8 @@
 class Issue < ApplicationRecord
   belongs_to :project
-  belongs_to :epic
+  belongs_to :epic, optional: true
   has_many :issue_users
-  has_many :users, through: :issue_users
+  has_many :users, through: :issue_users, dependent: :destroy
   belongs_to :author, class_name: 'User', foreign_key: 'author_id', optional: true
   has_many :tasks
 

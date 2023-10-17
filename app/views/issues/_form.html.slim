@@ -7,7 +7,7 @@ section
       .p-6.space-y-4.md:space-y-6.sm:p-8
         h1.text-xl.font-bold.leading-tight.tracking-tight.text-gray-900.md:text-2xl.dark:text-white
           = @issue.new_record? ? "Create a new user story" : "Edit user story"
-        = form_with model: @issue, data: { turbo: false } do |form|
+        = form_with model: [@current_project, @issue], data: { turbo: false } do |form|
           .space-y-4.md:space-y-6
             .
               = form.label :name, class:"#{form_label_css}" 
@@ -26,4 +26,4 @@ section
               = form.select :priority, Issue.priority_range, {prompt: "Select priority"}, {class:"#{form_select_input_css}" }
             .
               = form.submit (@issue.new_record? ? "Create user story" : "Update user story"), class:"#{form_submit_btn_css}" 
-              = link_to "Back", issues_path, class:"#{form_back_btn_css} mt-4"
+              = link_to "Back", project_issues_path, class:"#{form_back_btn_css} mt-4"

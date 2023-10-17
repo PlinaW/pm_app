@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   root 'welcome#index'
   get 'home', to: 'pages#index' 
   resources :projects do
-    resources :epics
     resources :project_users
+    resources :epics
+    resources :issues
   end
-  resources :issues
 end

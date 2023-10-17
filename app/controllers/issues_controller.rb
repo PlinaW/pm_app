@@ -1,42 +1,35 @@
 class IssuesController < ApplicationController
-
+  before_action :set_current_project
   before_action :set_issue, only: %i[show edit update destroy]
 
   def index
-    @project = Project.find(params[:project_id]) if params[:project_id].present?
-    @issues = Issue.paginate(page: params[:page], per_page: 5)
+    @issues = @current_project.issues.paginate(page: params[:page], per_page: 5)
   end
 
-  def show
-    @projects = Project.all
-    @epics = Epic.all
-  end
+  def show; end
 
   def new
-    @projects = Project.all
-    @epics = Epic.all
-    @issue = Issue.new
+    @issue = @current_project.issues.new
   end
 
   def create
-    @projects = Project.all
-    @epics = Epic.all
-    @issue = Issue.new(issue_params)
+    @issue = @current_project.issues.new(issue_params)
+    @issue.author = current_user
     if @issue.save
-      redirect_to @issue
+      @issue.issue_users.create(user: current_user)
+      flash[:notice] = 'Issue was successfully created'
+      redirect_to project_issue_path(@current_project, @issue)
     else
       render :new
     end
   end
 
-  def edit
-    @projects = Project.all
-  end
+  def edit; end
 
   def update
-    @projects = Project.all
     if @issue.update(issue_params)
-      redirect_to @issue
+      flash[:notice] = 'Issue was successfully updated'
+      redirect_to project_issue_path(@current_project, @issue)
     else
       render :edit
     end
@@ -44,13 +37,17 @@ class IssuesController < ApplicationController
 
   def destroy
     @issue.destroy
-    redirect_to issues_path
+    redirect_to project_issues_path(@current_project)
   end
 
   private
 
   def set_issue
-    @issue = Issue.find(params[:id])
+    @issue = @current_project.issues.find_by(id: params[:id])
+    return unless @issue.nil?
+
+    flash[:alert] = "This issue dosn't exist in this project"
+    redirect_to project_issues_path(@current_project)
   end
 
   def issue_params
