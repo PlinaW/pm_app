@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_10_191518) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_18_155839) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,6 +23,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_10_191518) do
     t.datetime "updated_at", null: false
     t.date "start_date"
     t.date "end_date"
+    t.bigint "author_id"
+    t.index ["author_id"], name: "index_epics_on_author_id"
     t.index ["project_id"], name: "index_epics_on_project_id"
   end
 
@@ -112,6 +114,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_10_191518) do
   end
 
   add_foreign_key "epics", "projects"
+  add_foreign_key "epics", "users", column: "author_id"
   add_foreign_key "issue_users", "issues"
   add_foreign_key "issue_users", "users"
   add_foreign_key "issues", "epics"

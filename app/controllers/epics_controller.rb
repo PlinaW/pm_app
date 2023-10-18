@@ -17,7 +17,9 @@ class EpicsController < ApplicationController
 
   def create
     @epic = @current_project.epics.new(epic_params)
+    @epic.author = current_user
     if @epic.save
+      flash[:notice] = 'Epic was successfully created'
       redirect_to project_epic_path(@current_project, @epic)
     else
       render :new
@@ -28,6 +30,7 @@ class EpicsController < ApplicationController
 
   def update
     if @epic.update(epic_params)
+      flash[:notice] = 'Epic was successfully updated'
       redirect_to project_epic_path(@current_project, @epic)
     else
       render :edit
