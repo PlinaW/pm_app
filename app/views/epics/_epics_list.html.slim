@@ -7,7 +7,7 @@ section.dark:bg-gray-900.p-3.sm:p-5
             svg.h-3.5.w-3.5.mr-2[fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"]
               path[clip-rule="evenodd" fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"]
             |  Add epic
-      .relative.overflow-x-auto
+      .overflow-x-auto
         table.w-full.text-sm.text-left.text-gray-500.border.dark:text-gray-400
           thead.text-xs.text-gray-700.uppercase.bg-gray-100.dark:bg-gray-700.dark:text-gray-400
             tr
@@ -22,8 +22,7 @@ section.dark:bg-gray-900.p-3.sm:p-5
               th.px-4.py-3[scope="col"]
                 | Owner
               th.px-4.py-3[scope="col"]
-                span.sr-only
-                  | Actions
+                | Actions
           tbody
             - @epics.each do |epic|
               tr.border-b.dark:border-gray-700
