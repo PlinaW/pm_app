@@ -18,7 +18,8 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     if @project.save
-      @project.project_users.create(user: current_user, role: 'admin')
+      @project.project_users.create(user: current_user, roles: 'admin')
+      flash[:notice] = 'Project was successfuly created'
       redirect_to @project
     else
       render :new
@@ -29,6 +30,7 @@ class ProjectsController < ApplicationController
 
   def update
     if @project.update(project_params)
+      flash[:notice] = 'Project was successfuly updated'
       redirect_to @project
     else
       render :edit
