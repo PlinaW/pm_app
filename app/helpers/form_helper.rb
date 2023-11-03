@@ -4,6 +4,6 @@ module FormHelper
   end
 
   def epics_for_select
-    Epic.order(:name).pluck(:name, :id)
+    @current_project.epics.order(:name).pluck(:name, :id)
   end
 end

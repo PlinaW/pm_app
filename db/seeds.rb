@@ -26,8 +26,8 @@ def create_epics
                  priority: 1, status: 'pending', project: Project.second }])
 end
 
-def create_user_stories
-  UserStory.create([{ name: 'Tworzenie konta użytkownika', 
+def create_issues
+  Issue.create([{ name: 'Tworzenie konta użytkownika', 
                       description: 'Jako użytkownik chcę mieć możliwość założenia własnego konta za pomocą formularza, następnie ma zostac sprawdzona poprawność wprowadzonych danych',
                       status: 'To do', priority: 1, epic: Epic.first },
                     { name: 'Potwierdzenie rejestracji przez e-mail', 
@@ -49,29 +49,29 @@ def create_sprints
 end
 
 def create_tasks
-  Task.create([ #Project: Project.first, UserStory: UserStory.first, Sprint: Sprint.first
-               { user_story: UserStory.first, sprint: Sprint.first, user: User.first, name: "Background dla funkcjonalności",
+  Task.create([ #Project: Project.first, Issue: Issue.first, Sprint: Sprint.first
+               { issue: Issue.first, sprint: Sprint.first, user: User.first, name: "Background dla funkcjonalności",
                  description: nil, status: "To do", priority: 1, starts_at: Date.today, ends_at: Date.today + 2.days },
-               { user_story: UserStory.first, sprint: Sprint.first, user: User.first, name: "Utworzenie formularza rejestracji",
+               { issue: Issue.first, sprint: Sprint.first, user: User.first, name: "Utworzenie formularza rejestracji",
                  description: nil, status: "To do", priority: 2, starts_at: Date.today + 2, ends_at: Date.today + 4.days },
-               { user_story: UserStory.first, sprint: Sprint.first, user: User.first, name: "Walidacja wprowadzonych danych w formularzu",
+               { issue: Issue.first, sprint: Sprint.first, user: User.first, name: "Walidacja wprowadzonych danych w formularzu",
                  description: nil, status: "To do", priority: 3, starts_at: Date.today + 4.days, ends_at: Date.today + 6.days },
-                #Project: Project.first, UserStory: UserStory.second, Sprint: Sprint.first
-               { user_story: UserStory.second, sprint: Sprint.first, user: User.second, name: "Wysłanie wiadomości e-mail z linkiem potwierdzającym",
+                #Project: Project.first, Issue: Issue.second, Sprint: Sprint.first
+               { issue: Issue.second, sprint: Sprint.first, user: User.second, name: "Wysłanie wiadomości e-mail z linkiem potwierdzającym",
                  description: nil, status: "To do", priority: 1, starts_at: Date.today, ends_at: Date.today + 2.days },
-               { user_story: UserStory.second, sprint: Sprint.first, user: User.second, name: "Implementacja mechanizmu weryfikacji potwierdzenia rejestracji",
+               { issue: Issue.second, sprint: Sprint.first, user: User.second, name: "Implementacja mechanizmu weryfikacji potwierdzenia rejestracji",
                  description: nil, status: "To do", priority: 2, starts_at: Date.today + 2.days, ends_at: Date.today + 4.days },
-                #Project: Project.first, UserStory: UserStory.third, Sprint: Sprint.first
-               { user_story: UserStory.third, sprint: Sprint.first, user: User.third, name: "Implementacja systemu logowania użytkownika",
+                #Project: Project.first, Issue: Issue.third, Sprint: Sprint.first
+               { issue: Issue.third, sprint: Sprint.first, user: User.third, name: "Implementacja systemu logowania użytkownika",
                  description: nil, status: "To do", priority: 1, starts_at: Date.today, ends_at: Date.today + 2.days },               
-               { user_story: UserStory.third, sprint: Sprint.first, user: User.third, name: "Stworzenie panelu do wyświetlania profilu użytkownika",
+               { issue: Issue.third, sprint: Sprint.first, user: User.third, name: "Stworzenie panelu do wyświetlania profilu użytkownika",
                  description: nil, status: "To do", priority: 2, starts_at: Date.today + 2.days, ends_at: Date.today + 4.days },
-               { user_story: UserStory.third, sprint: Sprint.first, user: User.third, name: "Implementacja mechanizmu zarządzania danymi konta z poziomu panelu",
+               { issue: Issue.third, sprint: Sprint.first, user: User.third, name: "Implementacja mechanizmu zarządzania danymi konta z poziomu panelu",
                  description: nil, status: "To do", priority: 3, starts_at: Date.today + 4.days, ends_at: Date.today + 6.days },
-                #Project: Project.second, UserStory: UserStory.fourth, Sprint: Sprint.second
-               { user_story: UserStory.fourth, sprint: Sprint.second, user: User.first, name: "Implementacja mechanizmu wyszukiwania kurierów",
+                #Project: Project.second, Issue: Issue.fourth, Sprint: Sprint.second
+               { issue: Issue.fourth, sprint: Sprint.second, user: User.first, name: "Implementacja mechanizmu wyszukiwania kurierów",
                  description: nil, status: "To do", priority: 1, starts_at: Date.today, ends_at: Date.today + 2.days },               
-               { user_story: UserStory.fourth, sprint: Sprint.second, user: User.first, name: "Implementacja mechanizmu przypisania zlecenia dla kuriera",
+               { issue: Issue.fourth, sprint: Sprint.second, user: User.first, name: "Implementacja mechanizmu przypisania zlecenia dla kuriera",
                  description: nil, status: "To do", priority: 2, starts_at: Date.today + 2.days, ends_at: Date.today + 4.days }])
 end
 
@@ -80,7 +80,7 @@ ActiveRecord::Base.transaction do
   create_users
   create_projects
   create_epics
-  create_user_stories  
+  create_issues  
   create_sprints
   create_tasks
 end

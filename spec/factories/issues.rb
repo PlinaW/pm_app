@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :user_story do
+  factory :issue do
     association :epic
     sequence(:name) { |n| "test name#{n}" }
     description { 'test description' }

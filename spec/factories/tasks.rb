@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :task do
-    association :user_story
+    association :issue
     association :sprint
     association :user
     sequence(:name) { |n| "test name #{n}" }

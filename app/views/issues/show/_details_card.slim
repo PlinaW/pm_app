@@ -21,14 +21,15 @@
       .col-span-6.sm:col-span-3.text-sm
           | Placeholder
       .col-span-6.sm:col-span-3.text-sm.font-bold
-          | Reporter:
-      .col-span-6.sm:col-span-3.text-sm
-          | Placeholder
+          | Author:
+      - unless @issue.author.nil?    
+        .col-span-6.sm:col-span-3.text-sm
+            = @issue.author.full_name
   .text-xs
     | Created 
-    = time_ago_in_words(@user_story.created_at)
+    = time_ago_in_words(@issue.created_at)
     |  ago
   .text-xs
     | Updated 
-    = time_ago_in_words(@user_story.updated_at)
+    = time_ago_in_words(@issue.updated_at)
     |  ago

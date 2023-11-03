@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_18_130432) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_18_155839) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,7 +23,44 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_18_130432) do
     t.datetime "updated_at", null: false
     t.date "start_date"
     t.date "end_date"
+    t.bigint "author_id"
+    t.index ["author_id"], name: "index_epics_on_author_id"
     t.index ["project_id"], name: "index_epics_on_project_id"
+  end
+
+  create_table "issue_users", force: :cascade do |t|
+    t.bigint "issue_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["issue_id"], name: "index_issue_users_on_issue_id"
+    t.index ["user_id"], name: "index_issue_users_on_user_id"
+  end
+
+  create_table "issues", force: :cascade do |t|
+    t.bigint "epic_id"
+    t.string "name", null: false
+    t.text "description"
+    t.string "status"
+    t.integer "priority"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "issue_type"
+    t.bigint "project_id"
+    t.bigint "author_id"
+    t.index ["author_id"], name: "index_issues_on_author_id"
+    t.index ["epic_id"], name: "index_issues_on_epic_id"
+    t.index ["project_id"], name: "index_issues_on_project_id"
+  end
+
+  create_table "project_users", force: :cascade do |t|
+    t.bigint "project_id", null: false
+    t.bigint "user_id", null: false
+    t.integer "roles", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_project_users_on_project_id"
+    t.index ["user_id"], name: "index_project_users_on_user_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -62,17 +99,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_18_130432) do
     t.index ["user_story_id"], name: "index_tasks_on_user_story_id"
   end
 
-  create_table "user_stories", force: :cascade do |t|
-    t.bigint "epic_id"
-    t.string "name", null: false
-    t.text "description"
-    t.string "status"
-    t.integer "priority"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["epic_id"], name: "index_user_stories_on_epic_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -88,8 +114,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_18_130432) do
   end
 
   add_foreign_key "epics", "projects"
+  add_foreign_key "epics", "users", column: "author_id"
+  add_foreign_key "issue_users", "issues"
+  add_foreign_key "issue_users", "users"
+  add_foreign_key "issues", "epics"
+  add_foreign_key "issues", "projects"
+  add_foreign_key "issues", "users", column: "author_id"
+  add_foreign_key "project_users", "projects"
+  add_foreign_key "project_users", "users"
+  add_foreign_key "tasks", "issues", column: "user_story_id"
   add_foreign_key "tasks", "sprints"
-  add_foreign_key "tasks", "user_stories"
   add_foreign_key "tasks", "users"
-  add_foreign_key "user_stories", "epics"
 end

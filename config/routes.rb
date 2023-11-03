@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
   root 'welcome#index'
   get 'home', to: 'pages#index' 
-  resources :projects
-  resources :epics
-  resources :user_stories
+  resources :projects do
+    resources :project_users
+    resources :epics
+    resources :issues
+  end
 end

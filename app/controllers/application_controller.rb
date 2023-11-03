@@ -16,6 +16,10 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def set_current_project
+    @current_project = Project.find(params[:project_id])
+  end
+
   def layout_by_resource
     if devise_controller?
       'devise/devise'
