@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   root 'welcome#index'
   get 'home', to: 'pages#index' 
   resources :projects do
-    resources :project_users
+    resources :project_users do
+      collection do
+        post :invite
+      end
+    end
     resources :epics
     resources :issues
   end

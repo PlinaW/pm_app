@@ -10,6 +10,15 @@
         | Description:
       .text-sm
         = @project.description 
+
+    .pt-4.mb-8.bg-white.col-span-2.dark:border-gray-700.dark:bg-gray-800
+      .mb-4.text-lg.font-semibold.dark:text-white
+        | Add user to the project:
+      = form_with url: invite_project_project_users_path(@project) do |form|
+        = form.text_field :email, placeholder: 'Email'
+        = form.submit 'Invite'
+
+
     /Team_table
     .pt-4.mb-4.bg-white.col-span-2.dark:border-gray-700.dark:bg-gray-800      
       .flex.justify-between  
