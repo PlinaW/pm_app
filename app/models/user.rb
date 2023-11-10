@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
   has_many :project_users
@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_many :authored_epics, class_name: 'Epic', foreign_key: 'author_id'
   has_many :tasks, dependent: :nullify
 
-  validates :first_name, :last_name, presence: true
+  # validates :first_name, :last_name, presence: true
 
   def full_name
     return "#{first_name} #{last_name}" if first_name || last_name

@@ -56,6 +56,9 @@ gem 'bootsnap', require: false
 # Adding the devise gem to enable user authentication
 gem 'devise'
 
+# Support to Devise for sending invitations by email
+gem 'devise_invitable', '~> 2.0.0'
+
 # Use Slim
 gem 'slim'
 

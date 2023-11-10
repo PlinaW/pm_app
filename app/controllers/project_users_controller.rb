@@ -6,7 +6,7 @@ class ProjectUsersController < ApplicationController
     email = params[:email]
     return redirect_to project_path(@current_project), alert: 'No email provided' if email.blank?
 
-    user = User.find_by(email:)
+    user = User.find_by(email:) || User.invite!({ email: }, current_user)
     return redirect_to project_path(@current_project), alert: 'Email invalid' unless user.valid?
 
     user.project_users.find_or_create_by(project: @current_project, roles: 0)
