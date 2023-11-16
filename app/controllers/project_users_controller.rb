@@ -14,4 +14,10 @@ class ProjectUsersController < ApplicationController
     redirect_to project_path(@current_project), notice: "#{email} was invited"
   end
 
+  def destroy
+    @project_user = @current_project.project_users.find(params[:id])
+    @project_user.destroy
+    redirect_to project_path(@current_project), notice: 'User removed from project'
+  end
+
 end
