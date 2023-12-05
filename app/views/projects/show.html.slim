@@ -16,35 +16,28 @@
         .mb-4.text-lg.font-semibold.dark:text-white
           | Project team
         .flex.pl-2.space-x-1.mr-10
-          = link_to "#", class: "inline-flex justify-center p-1 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" do
-            svg.w-5.h-5[fill="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"]
-              path[fill-rule="evenodd" d="M8.5 12C10.9853 12 13 9.98528 13 7.5C13 5.01472 10.9853 3 8.5 3C6.01472 3 4 5.01472 4 7.5C4 9.98528 6.01472 12 8.5 12Z"]
-              path[fill-rule="evenodd" d="M10 13H7C5.67441 13.0016 4.40356 13.5289 3.46622 14.4662C2.52888 15.4036 2.00159 16.6744 2 18V20C2 20.2652 2.10536 20.5196 2.29289 20.7071C2.48043 20.8946 2.73478 21 3 21H14C14.2652 21 14.5196 20.8946 14.7071 20.7071C14.8946 20.5196 15 20.2652 15 20V18C14.9984 16.6744 14.4711 15.4036 13.5338 14.4662C12.5964 13.5289 11.3256 13.0016 10 13Z"]
-              path[fill-rule="evenodd" d="M21 10H19V8C19 7.73478 18.8946 7.48043 18.7071 7.29289C18.5196 7.10536 18.2652 7 18 7C17.7348 7 17.4804 7.10536 17.2929 7.29289C17.1054 7.48043 17 7.73478 17 8V10H15C14.7348 10 14.4804 10.1054 14.2929 10.2929C14.1054 10.4804 14 10.7348 14 11C14 11.2652 14.1054 11.5196 14.2929 11.7071C14.4804 11.8946 14.7348 12 15 12H17V14C17 14.2652 17.1054 14.5196 17.2929 14.7071C17.4804 14.8946 17.7348 15 18 15C18.2652 15 18.5196 14.8946 18.7071 14.7071C18.8946 14.5196 19 14.2652 19 14V12H21C21.2652 12 21.5196 11.8946 21.7071 11.7071C21.8946 11.5196 22 11.2652 22 11C22 10.7348 21.8946 10.4804 21.7071 10.2929C21.5196 10.1054 21.2652 10 21 10Z"]    
-          = link_to "#", class: "inline-flex justify-center p-1 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" do
-            svg.w-5.h-5[fill="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"]
-              path[fill-rule="evenodd" d="M8.5 12C10.9853 12 13 9.98528 13 7.5C13 5.01472 10.9853 3 8.5 3C6.01472 3 4 5.01472 4 7.5C4 9.98528 6.01472 12 8.5 12Z"]
-              path[fill-rule="evenodd" d="M10 13H7C5.67441 13.0016 4.40356 13.5289 3.46622 14.4662C2.52888 15.4036 2.00159 16.6744 2 18V20C2 20.2652 2.10536 20.5196 2.29289 20.7071C2.48043 20.8946 2.73478 21 3 21H14C14.2652 21 14.5196 20.8946 14.7071 20.7071C14.8946 20.5196 15 20.2652 15 20V18C14.9984 16.6744 14.4711 15.4036 13.5338 14.4662C12.5964 13.5289 11.3256 13.0016 10 13Z"]
-              path[fill-rule="evenodd" d="M21 10H15C14.7348 10 14.4804 10.1054 14.2929 10.2929C14.1054 10.4804 14 10.7348 14 11C14 11.2652 14.1054 11.5196 14.2929 11.7071C14.4804 11.8946 14.7348 12 15 12H21C21.2652 12 21.5196 11.8946 21.7071 11.7071C21.8946 11.5196 22 11.2652 22 11C22 10.7348 21.8946 10.4804 21.7071 10.2929C21.5196 10.1054 21.2652 10 21 10Z"]
+          = render partial: 'projects/show/invite_form'
       .overflow-x-auto.pr-10
         table.w-full.text-sm.text-left.text-gray-500.dark:text-gray-400
           tbody
-            tr.border-t.border-b.dark:border-gray-700
-              - @project.users.each do |user|
+            - @project.users.each do |user|
+              tr.border-t.border-b.dark:border-gray-700
                 td.pl-4.md:pr-4.py-3.font-medium.text-gray-900.whitespace-nowrap.dark:text-white[scope="row"]
                   = user.full_name
-                td.pl-4.md:pr-60.py-3.font-medium.text-gray-900.whitespace-nowrap.dark:text-white[scope="row"]
+                td.pl-4.md:pr-4.py-3.font-medium.text-gray-900.whitespace-nowrap.dark:text-white[scope="row"]
+                  = user.email
+                td.pl-4.xl:pr-60.py-3.font-medium.text-gray-900.whitespace-nowrap.dark:text-white[scope="row"]
                   = "(#{user.project_users.find_by(project_id: @project).roles})"
                 td.px-4.py-3.flex.items-center.justify-end
-                  button id="placeholder-dropdown-button" class="inline-flex items-center p-0 5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100" data-dropdown-toggle="placeholder-dropdown" type="button"
+                  button id="#{user.id}-dropdown-button" class="inline-flex items-center p-0 5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100" data-dropdown-toggle="#{user.id}-dropdown" type="button"
                     svg.w-5.h-5[aria-hidden="true" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"]
                       path[d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"]
-                  div id="placeholder-dropdown" class=" hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
-                    div class= "py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="placeholder-dropdown-button"
+                  div id="#{user.id}-dropdown" class=" hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
+                    div class= "py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="#{user.id}-dropdown-button"
                       = link_to 'Show', '#', class:"block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     .py-1
                       = link_to 'Edit', edit_user_registration_path, class:"block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     .py-1
-                      = link_to "Remove from project", '#' , class: "block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }
+                      = link_to "Remove from project", project_project_user_path(@project, user.project_users.where(project: @project).first), class: "block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }
   /Details_card
   = render partial: 'projects/show/details_card'
