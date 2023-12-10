@@ -23,10 +23,6 @@
               <%= form.select :status, ['active', 'suspended', 'ended'], {}, {class:"#{form_select_input_css}" }%>
             </div>
             <div>
-              <%= form.label :start_date, class:"#{form_label_css}" %>
-              <%= form.date_select :start_date, {}, {class:"#{form_date_select_input_css}" } %>
-            </div>
-            <div>
               <%= form.label :end_date, class:"#{form_label_css}"%>
               <%= form.date_select :end_date, {}, {class:"#{form_date_select_input_css}" } %>
             </div>
