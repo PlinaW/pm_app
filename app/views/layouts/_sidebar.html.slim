@@ -46,6 +46,16 @@ aside.md:fixed.top-0.left-0.w-full.md:w-64.md:h-screen.pt-14.bg-white.border-r.b
       /     path[d="M20 5H4C3.46957 5 2.96086 5.21071 2.58579 5.58579C2.21071 5.96086 2 6.46957 2 7V17C2 17.5304 2.21071 18.0391 2.58579 18.4142C2.96086 18.7893 3.46957 19 4 19H20C20.5304 19 21.0391 18.7893 21.4142 18.4142C21.7893 18.0391 22 17.5304 22 17V7C22 6.46957 21.7893 5.96086 21.4142 5.58579C21.0391 5.21071 20.5304 5 20 5ZM11 11V13H4V11H11ZM13 11H20V13H13V11ZM4 15H11V17H4V15ZM13 17V15H20V17H13Z" clip-rule="evenodd"]
       /   span.ml-3
       /     | Sprints
+      li = link_to '#', class:"#{sidebar_main_btn_css}" do
+        svg[width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"]
+          path[d="M14 17H20M17 20V14M4.857 4H9.143C9.61631 4 10 4.38369 10 4.857V9.143C10 9.61631 9.61631 10 9.143 10H4.857C4.38369 10 4 9.61631 4 9.143V4.857C4 4.38369 4.38369 4 4.857 4ZM14.857 4H19.143C19.6163 4 20 4.38369 20 4.857V9.143C20 9.61631 19.6163 10 19.143 10H14.857C14.3837 10 14 9.61631 14 9.143V4.857C14 4.38369 14.3837 4 14.857 4ZM4.857 14H9.143C9.61631 14 10 14.3837 10 14.857V19.143C10 19.6163 9.61631 20 9.143 20H4.857C4.38369 20 4 19.6163 4 19.143V14.857C4 14.3837 4.38369 14 4.857 14Z" stroke="#2F2F38" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"]
+        .ml-3
+          | Epics
+      li = link_to '#', class:"#{sidebar_main_btn_css}" do
+        svg[width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"]
+          path[d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#2F2F38" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"]
+        .ml-3
+          | Issues
     .mt-5.ml-1.mb-1.text-base.font-medium.text-gray-900.text-xs
       | People
     ul.space-y-1.border-t.border-gray-200.my-1.py-1
