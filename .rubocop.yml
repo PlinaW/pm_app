@@ -87,7 +87,7 @@ Layout/AccessModifierIndentation:
 Layout/CommentIndentation:
   Enabled: false
 Layout/LineLength:
-  Max: 100
+  Max: 150
   Exclude:
     - 'spec/**/*.rb'
 Layout/MultilineMethodCallIndentation:
