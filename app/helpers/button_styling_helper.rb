@@ -30,7 +30,7 @@ module ButtonStylingHelper
   end
 
   def sidebar_main_btn_css
-    "flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg
+    "flex items-center p-2 pl-3 w-full text-base font-medium text-gray-900 rounded-lg
     hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
   end
 
