@@ -16,8 +16,8 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def set_current_project
-    @current_project = Project.find(params[:project_id])
+  def set_project
+    @project = Project.find(params[:project_id])
   end
 
   def layout_by_resource

@@ -7,7 +7,7 @@ section
       .p-6.space-y-4.md:space-y-6.sm:p-8
         h1.text-xl.font-bold.leading-tight.tracking-tight.text-gray-900.md:text-2xl.dark:text-white
           = @issue.new_record? ? "Create a new user story" : "Edit user story"
-        = form_with model: [@current_project, @issue], data: { turbo: false } do |form|
+        = form_with model: [@project, @issue], data: { turbo: false } do |form|
           .space-y-4.md:space-y-6
             .
               = form.label :name, class:"#{form_label_css}" 
