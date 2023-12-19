@@ -1,62 +1,33 @@
-aside.md:fixed.top-0.left-0.w-full.md:w-64.md:h-screen.pt-14.bg-white.border-r.border-gray-200.border-b.md:border-b-0.dark:bg-gray-800.dark:border-gray-700[aria-label="Sidebar"]
-  .overflow-y-auto.py-5.px-3.h-full.bg-white.dark:bg-gray-800
-    form.md:hidden.mb-4[action="#" method="GET"]
-      label.sr-only[for="sidebar-search"]
-        | Search
-      .relative.md:w-64.md:w-96
-        .flex.absolute.inset-y-0.left-0.items-center.pl-3.pointer-events-none
-          svg.w-5.h-5.text-gray-500.dark:text-gray-400[fill="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"]
-            path[fill-rule="evenodd" clip-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"]
-        input#sidebar-search.bg-gray-50.border.border-gray-300.text-gray-900.text-sm.rounded-lg.focus:ring-primary-500.focus:border-primary-500.block.w-full.pl-10.p-2.dark:bg-gray-700.dark:border-gray-600.dark:placeholder-gray-400.dark:text-white.dark:focus:ring-primary-500.dark:focus:border-primary-500[type="text" name="search" placeholder="Search"]
+aside.md:fixed.top-0.left-0.w-full.md:w-64.md:h-screen.pt-14.bg-white.md:border-r.border-gray-200.border-b.md:border-b-0.dark:bg-gray-800.dark:border-gray-700[aria-label="Sidebar"]
+  .overflow-y-auto.pt-10.md:pt-5.px-3.bg-white.dark:bg-gray-800
     .mb-5
-      - unless @current_project.nil?
-        ul.space-y-1
-          button[class="#{sidebar_main_btn_css}" type="button" aria-controls="dropdown-project-name" data-collapse-toggle="dropdown-project-name"]
-            span.flex-1.ml-3.text-left.text-sm
-              = @current_project.name
-          ul#dropdown-project-name.hidden.py-2.space-y-2
-            li = link_to project_path(@current_project), class:"#{sidebar_second_btn_css}" do
-              |Project
-            li = link_to project_epics_path(@current_project), class:"#{sidebar_second_btn_css}" do
-              |Epics
-            li = link_to project_issues_path(@current_project), class:"#{sidebar_second_btn_css}" do
-              |Issues
-      - unless @project.nil?
-        ul.space-y-1
-          button[class="#{sidebar_main_btn_css}" type="button" aria-controls="dropdown-project-name" data-collapse-toggle="dropdown-project-name"]
-            span.flex-1.ml-3.text-left.text-sm
-              = @project.name
-          ul#dropdown-project-name.hidden.py-2.space-y-2
-            li = link_to project_path(@project), class:"#{sidebar_second_btn_css}" do
-              |Project
-            li = link_to project_epics_path(@project), class:"#{sidebar_second_btn_css}" do
-              |Epics
-            li = link_to project_issues_path(@project), class:"#{sidebar_second_btn_css}" do
-              |Issues
-    .mt-5.ml-1.mb-1.text-base.font-medium.text-gray-900.text-xs
+      -if @project
+        .space-y-1
+        = link_to @project.name, project_path(@project), class: "#{sidebar_title_btn_css}"
+    .mt-5.ml-1.pb-2.border-b.border-gray-200.text-base.font-medium.text-gray-900.text-xs
       | Planning
-    ul.space-y-1.border-t.border-gray-200.my-1.py-1
+    ul.space-y-1.my-1.py-1
       li = link_to '#', class:"#{sidebar_main_btn_css}" do
-        svg.flex-shrink-0.w-6.h-6.text-gray-500.transition.duration-75.group-hover:text-gray-900.dark:text-gray-400.dark:group-hover:text-white[aria-hidden="true" fill="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"]
-          path[d="M19 3H15.722C15.5479 2.69696 15.2971 2.44504 14.9948 2.26952C14.6926 2.094 14.3495 2.00105 14 2H10C9.65049 2.00105 9.3074 2.094 9.00516 2.26952C8.70291 2.44504 8.45214 2.69696 8.278 3H5C4.46957 3 3.96086 3.21071 3.58579 3.58579C3.21071 3.96086 3 4.46957 3 5V20C3 20.5304 3.21071 21.0391 3.58579 21.4142C3.96086 21.7893 4.46957 22 5 22H19C19.5304 22 20.0391 21.7893 20.4142 21.4142C20.7893 21.0391 21 20.5304 21 20V5C21 4.46957 20.7893 3.96086 20.4142 3.58579C20.0391 3.21071 19.5304 3 19 3ZM16 17H8C7.73478 17 7.48043 16.8946 7.29289 16.7071C7.10536 16.5196 7 16.2652 7 16C7 15.7348 7.10536 15.4804 7.29289 15.2929C7.48043 15.1054 7.73478 15 8 15H16C16.2652 15 16.5196 15.1054 16.7071 15.2929C16.8946 15.4804 17 15.7348 17 16C17 16.2652 16.8946 16.5196 16.7071 16.7071C16.5196 16.8946 16.2652 17 16 17ZM16 13H8C7.73478 13 7.48043 12.8946 7.29289 12.7071C7.10536 12.5196 7 12.2652 7 12C7 11.7348 7.10536 11.4804 7.29289 11.2929C7.48043 11.1054 7.73478 11 8 11H16C16.2652 11 16.5196 11.1054 16.7071 11.2929C16.8946 11.4804 17 11.7348 17 12C17 12.2652 16.8946 12.5196 16.7071 12.7071C16.5196 12.8946 16.2652 13 16 13ZM16 8H8C7.73478 8 7.48043 7.89464 7.29289 7.70711C7.10536 7.51957 7 7.26522 7 7C7 6.73478 7.10536 6.48043 7.29289 6.29289C7.48043 6.10536 7.73478 6 8 6H10V4H14V6H16C16.2652 6 16.5196 6.10536 16.7071 6.29289C16.8946 6.48043 17 6.73478 17 7C17 7.26522 16.8946 7.51957 16.7071 7.70711C16.5196 7.89464 16.2652 8 16 8Z" clip-rule="evenodd"]
-        span.ml-3.mt-1
+        = image_tag('backlog.svg', alt: 'Backlog SVG')
+        .ml-4.mt-1
           | Backlog
       li = link_to '#', class:"#{sidebar_main_btn_css}" do
-        svg.flex-shrink-0.w-6.h-6.text-gray-500.transition.duration-75.group-hover:text-gray-900.dark:text-gray-400.dark:group-hover:text-white[aria-hidden="true" fill="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"]
-          path[d="M20 5H4C3.46957 5 2.96086 5.21071 2.58579 5.58579C2.21071 5.96086 2 6.46957 2 7V17C2 17.5304 2.21071 18.0391 2.58579 18.4142C2.96086 18.7893 3.46957 19 4 19H20C20.5304 19 21.0391 18.7893 21.4142 18.4142C21.7893 18.0391 22 17.5304 22 17V7C22 6.46957 21.7893 5.96086 21.4142 5.58579C21.0391 5.21071 20.5304 5 20 5ZM11 11V13H4V11H11ZM13 11H20V13H13V11ZM4 15H11V17H4V15ZM13 17V15H20V17H13Z" clip-rule="evenodd"]
-        span.ml-3
-          | Board
-    .mt-5.ml-1.mb-1.text-base.font-medium.text-gray-900.text-xs
+        = image_tag('sprints.svg', alt: 'Sprints SVG')
+        .ml-4
+          | Sprints
+      -if @project
+        li = link_to project_epics_path(@project), class:"#{sidebar_main_btn_css}" do
+          = image_tag('epics.svg', alt: 'Epics SVG')
+          .ml-4
+            | Epics
+        li = link_to project_issues_path(@project), class:"#{sidebar_main_btn_css}" do
+          = image_tag('issues.svg', alt: 'Issues SVG')
+          .ml-4
+            | Issues     
+    .mt-5.ml-1.pb-2.border-b.border-gray-200.text-base.font-medium.text-gray-900.text-xs
       | People
-    ul.space-y-1.border-t.border-gray-200.my-1.py-1
-      li
-        button[class="#{sidebar_main_btn_css}" type="button" aria-controls="dropdown-sales" data-collapse-toggle="dropdown-sales"]
-          svg.flex-shrink-0.w-6.h-6.text-gray-500.transition.duration-75.group-hover:text-gray-900.dark:text-gray-400.dark:group-hover:text-white[aria-hidden="true" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"]
-            path[fill-rule="evenodd" d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z" clip-rule="evenodd"]
-          span.flex-1.ml-3.text-left.whitespace-nowrap
-            | Team
-          svg.w-6.h-6[aria-hidden="true" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"]
-            path[fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"]
-        ul#dropdown-sales.hidden.py-2.space-y-2
-          li = link_to 'Members', users_path, class:"#{sidebar_second_btn_css}"
-
+    ul.space-y-1.my-1.py-1
+      li = link_to '#', class:"#{sidebar_main_btn_css}" do
+        = image_tag('team.svg', alt: 'Team SVG')
+        .ml-3
+          | Members           
