@@ -23,6 +23,13 @@ module ButtonStylingHelper
     dark:hover:text-white dark:hover:bg-red-700"
   end
 
+  # navbar buttons
+  def navbar_main_btn_css
+    "w-full px-3 py-2 text-sm font-medium text-center inline-flex items-center
+    rounded-lg hover:bg-gray-100 focus:ring-2 focus:outline-none focus:ring-gray-300
+    dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+  end
+
   # sidebar buttons
   def sidebar_title_btn_css
     "flex justify-center p-2 w-full text-base font-medium text-gray-900 rounded-lg
