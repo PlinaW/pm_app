@@ -25,7 +25,7 @@ module ButtonStylingHelper
 
   # navbar buttons
   def navbar_main_btn_css
-    "w-full px-3 py-2 text-sm font-medium text-center inline-flex items-center
+    "w-auto px-3 py-2 text-sm font-medium text-center inline-flex items-center
     rounded-lg hover:bg-gray-100 focus:ring-2 focus:outline-none focus:ring-gray-300
     dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
   end
