@@ -19,27 +19,22 @@
             | Projects
       / user dropdown menu button      
       - if current_user 
-        .flex.items-center.lg:order-2
-          button#user-menu-button.flex.mx-3.text-sm.rounded-full.md:mr-0.focus:ring-4.focus:ring-gray-300.dark:focus:ring-gray-600[type="button" aria-expanded="false" data-dropdown-toggle="dropdown"]
-            span.sr-only
-              | Open user menu
-            svg[width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"]
-              path[d="M12 12C14.4853 12 16.5 9.98528 16.5 7.5C16.5 5.01472 14.4853 3 12 3C9.51472 3 7.5 5.01472 7.5 7.5C7.5 9.98528 9.51472 12 12 12Z" fill="#2F2F38"]
-              path[d="M14 13H10C8.67441 13.0016 7.40356 13.5289 6.46622 14.4662C5.52888 15.4036 5.00159 16.6744 5 18V20C5 20.2652 5.10536 20.5196 5.29289 20.7071C5.48043 20.8946 5.73478 21 6 21H18C18.2652 21 18.5196 20.8946 18.7071 20.7071C18.8946 20.5196 19 20.2652 19 20V18C18.9984 16.6744 18.4711 15.4036 17.5338 14.4662C16.5964 13.5289 15.3256 13.0016 14 13Z" fill="#2F2F38"]
-          #dropdown.hidden.z-50.my-4.w-56.text-base.list-none.bg-white.rounded.divide-y.divide-gray-100.shadow.dark:bg-gray-700.dark:divide-gray-600.rounded-xl
-            .py-3.px-4
-              span.block.text-sm.font-semibold.text-gray-900.dark:text-white
-                = current_user.full_name
-              span.block.text-sm.text-gray-900.truncate.dark:text-white
-                = current_user.email
-            ul.py-1.text-gray-700.dark:text-gray-300[aria-labelledby="dropdown"]
-              li
-                = link_to 'My profile', '#', class: "block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
-              li
-                = link_to 'Account settings', edit_user_registration_path, class: "block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
-            ul.py-1.text-gray-700.dark:text-gray-300[aria-labelledby="dropdown"]
-              li
-                = link_to "Logout", destroy_user_session_path, class: "block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white", data: { "turbo-method": :delete }
+        button#user-menu-button.flex.mx-3.text-sm.rounded-full.md:mr-0[type="button" aria-expanded="false" data-dropdown-toggle="dropdown"]
+          = image_tag('user_menu_btn.svg', alt: 'USER MENU BTN SVG')
+        #dropdown.hidden.z-50.my-4.w-56.text-base.list-none.bg-white.rounded.divide-y.divide-gray-100.shadow.dark:bg-gray-700.dark:divide-gray-600.rounded-xl
+          .py-3.px-4
+            span.block.text-sm.font-semibold.text-gray-900.dark:text-white
+              = current_user.full_name
+            span.block.text-sm.text-gray-900.truncate.dark:text-white
+              = current_user.email
+          ul.py-1.dark:text-gray-300[aria-labelledby="dropdown"]
+            li
+              = link_to 'My profile', '#', class: "#{navbar_user_dropdown_btn_css}"
+            li
+              = link_to 'Account settings', edit_user_registration_path, class: "#{navbar_user_dropdown_btn_css}"
+          ul.py-1.dark:text-gray-300[aria-labelledby="dropdown"]
+            li
+              = link_to "Logout", destroy_user_session_path, class: "#{navbar_user_dropdown_btn_css}", data: { "turbo-method": :delete }
     .flex.justify-center.border-t.border-gray-200.space-x-0.5.py-2.md:hidden
       = link_to home_path, class:"#{navbar_main_btn_css}" do
         = image_tag('home.svg', alt: 'Home SVG')

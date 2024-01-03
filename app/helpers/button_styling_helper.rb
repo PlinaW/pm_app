@@ -30,6 +30,11 @@ module ButtonStylingHelper
     dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
   end
 
+  def navbar_user_dropdown_btn_css
+    "block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400
+    dark:hover:text-white"
+  end
+
   # sidebar buttons
   def sidebar_title_btn_css
     "flex justify-center p-2 w-full text-base font-medium text-gray-900 rounded-lg
