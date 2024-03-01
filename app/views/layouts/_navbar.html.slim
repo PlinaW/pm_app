@@ -17,11 +17,11 @@
           = image_tag('projects.svg', alt: 'Projects SVG')
           .pl-2
             | Projects
-        button(id="create_dropdown_btn" class="#{sidebar_main_btn_css}" type="button" data-dropdown-toggle="create_dropdown" aria-expanded="false")
+        button(id="create_dropdown_btn" class="#{sidebar_main_btn_css}" type="button" data-dropdown-toggle="create_dropdown_btn1" aria-expanded="false")
           = image_tag('create.svg', alt: 'CREATE SVG')
           .pl-2
             | Create
-        #create_dropdown.hidden.z-50.my-4.w-44.text-base.list-none.bg-white.rounded-xl.shadow.dark:bg-gray-700.dark:divide-gray-600
+        #create_dropdown_btn1.hidden.z-50.my-4.w-44.text-base.list-none.bg-white.rounded-xl.shadow.dark:bg-gray-700.dark:divide-gray-600
           ul.py-1.divide-y.divide-gray-100.dark:text-gray-300[aria-labelledby="create_dropdown_btn"]
             li
               = link_to 'New project', new_project_path, class: "#{navbar_user_dropdown_btn_css}"
