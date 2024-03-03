@@ -3,7 +3,7 @@ class Project < ApplicationRecord
   include Status
 
   has_many :project_users, dependent: :destroy
-  has_many :users, through: :project_users, dependent: :nullify
+  has_many :users, through: :project_users
   has_many :teams, dependent: :destroy
   has_many :issues, dependent: :destroy
   has_many :epics, dependent: :destroy

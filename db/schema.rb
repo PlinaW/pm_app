@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_03_191224) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_03_192922) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -99,6 +99,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_03_191224) do
     t.index ["user_story_id"], name: "index_tasks_on_user_story_id"
   end
 
+  create_table "team_users", force: :cascade do |t|
+    t.bigint "team_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["team_id"], name: "index_team_users_on_team_id"
+    t.index ["user_id"], name: "index_team_users_on_user_id"
+  end
+
   create_table "teams", force: :cascade do |t|
     t.string "name"
     t.bigint "project_id", null: false
@@ -145,5 +154,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_03_191224) do
   add_foreign_key "tasks", "issues", column: "user_story_id"
   add_foreign_key "tasks", "sprints"
   add_foreign_key "tasks", "users"
+  add_foreign_key "team_users", "teams"
+  add_foreign_key "team_users", "users"
   add_foreign_key "teams", "projects"
 end
