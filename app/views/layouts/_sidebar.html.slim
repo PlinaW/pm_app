@@ -1,12 +1,11 @@
-aside.md:fixed.top-0.left-0.w-full.md:w-64.md:h-screen.pt-14.bg-white.md:border-r.border-gray-200.border-b.md:border-b-0.dark:bg-gray-800.dark:border-gray-700[aria-label="Sidebar"]
-  .overflow-y-auto.pt-10.md:pt-5.px-3.bg-white.dark:bg-gray-800
-    .mb-5
+aside#sidebar.fixed.top-0.z-40.w-full.transition-transform.-translate-y-full.md:top-0.md:left-0.md:translate-y-0.md:w-64.md:pt-14.md:border.md:border-gray-200[aria-label="Sidebar"]
+  .overflow-y-auto.pt-32.h-screen.md:pt-5.px-3.bg-white.dark:bg-gray-800
+    .my-3
       -if @project
-        .space-y-1
         = link_to @project.name, project_path(@project), class: "#{sidebar_title_btn_css}"
-    .mt-5.ml-1.pb-2.border-b.border-gray-200.text-base.font-medium.text-gray-900.text-xs
+    .mt-6.pl-1.pb-2.border-b.border-gray-200.text-base.font-medium.text-gray-900.text-xs
       | Planning
-    ul.space-y-1.my-1.py-1
+    ul.space-y-1.mt-1.pt-1
       li = link_to '#', class:"#{sidebar_main_btn_css}" do
         = image_tag('backlog.svg', alt: 'Backlog SVG')
         .ml-4.mt-1
@@ -24,10 +23,13 @@ aside.md:fixed.top-0.left-0.w-full.md:w-64.md:h-screen.pt-14.bg-white.md:border-
           = image_tag('issues.svg', alt: 'Issues SVG')
           .ml-4
             | Issues     
-    .mt-5.ml-1.pb-2.border-b.border-gray-200.text-base.font-medium.text-gray-900.text-xs
+    .mt-5.pl-1.pb-2.border-b.border-gray-200.text-base.font-medium.text-gray-900.text-xs
       | People
-    ul.space-y-1.my-1.py-1
+    ul.space-y-1.mt-1.pt-1
       li = link_to '#', class:"#{sidebar_main_btn_css}" do
         = image_tag('team.svg', alt: 'Team SVG')
         .ml-3
           | Members           
+
+
+/ #sidebar.fixed.top-0.left-0.w-full.md:w-64.md:h-screen.pt-14.bg-white.md:border-r.border-gray-200.border-b.md:border-b-0.dark:bg-gray-800.dark:border-gray-700[aria-label="Sidebar"]

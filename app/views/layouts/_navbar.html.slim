@@ -1,53 +1,66 @@
 .antialiased.bg-gray-50.dark:bg-gray-900
-  nav.bg-white.border-b.border-gray-200.px-4.py-2.5.dark:bg-gray-800.dark:border-gray-700.fixed.left-0.right-0.top-0.z-50
-    .flex.flex-wrap.justify-between.items-center
+  nav.bg-white.border-b.border-gray-200.dark:bg-gray-800.dark:border-gray-700.fixed.left-0.right-0.top-0.z-50
+    .flex.flex-wrap.justify-between.items-center.px-4.py-2
       .flex.justify-start.items-center
         /sidebar button
-        button.p-2.mr-2.text-gray-600.rounded-lg.cursor-pointer.md:hidden.hover:text-gray-900.hover:bg-gray-100.focus:bg-gray-100.dark:focus:bg-gray-700.focus:ring-2.focus:ring-gray-100.dark:focus:ring-gray-700.dark:text-gray-400.dark:hover:bg-gray-700.dark:hover:text-white[data-drawer-target="drawer-navigation" data-drawer-toggle="drawer-navigation" aria-controls="drawer-navigation"]
-          svg.w-6.h-6[aria-hidden="true" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"]
-            path[fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"]
-          svg.hidden.w-6.h-6[aria-hidden="true" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"]
-            path[fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"]
-          span.sr-only
-            | Toggle sidebar
+        button.p-2.mr-2.text-gray-600.rounded-lg.cursor-pointer.md:hidden.hover:text-gray-900.hover:bg-gray-100.focus:bg-gray-100.dark:focus:bg-gray-700.focus:ring-2.focus:ring-gray-100.dark:focus:ring-gray-700.dark:text-gray-400.dark:hover:bg-gray-700.dark:hover:text-white[data-drawer-target="sidebar" data-drawer-toggle="sidebar" aria-controls="sidebar"]
+          = image_tag('hamburger.svg', alt: 'Hamburger SVG')
         /logo button
-        a.flex.items-center.justify-between.mr-4[href="#"]
-          / img.mr-3.h-8[src="#" alt="PmApp Logo"]
-          span.self-center.text-2xl.font-semibold.whitespace-nowrap.dark:text-white
-            | PmApp
-        /navbar menu
-        .flex.item-center.mx-4
-          - unless current_page?(home_path)
-            = link_to home_path, class:"#{sidebar_main_btn_css}" do
-              svg.w-5.h-5.text-gray-500.transition.duration-75.dark:text-gray-400.group-hover:text-gray-900.dark:group-hover:text-white[aria-hidden="true" fill="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"]
-                path[d="M21.7069 11.293L19.7069 9.29303L12.7069 2.29303C12.5194 2.10556 12.2651 2.00024 11.9999 2.00024C11.7348 2.00024 11.4804 2.10556 11.2929 2.29303L4.29292 9.29303L2.29292 11.293C2.11076 11.4816 2.00997 11.7342 2.01224 11.9964C2.01452 12.2586 2.11969 12.5094 2.3051 12.6948C2.49051 12.8803 2.74132 12.9854 3.00352 12.9877C3.26571 12.99 3.51832 12.8892 3.70692 12.707L3.99992 12.414V20C3.99992 20.5305 4.21063 21.0392 4.58571 21.4142C4.96078 21.7893 5.46949 22 5.99992 22H8.99992C9.26514 22 9.51949 21.8947 9.70703 21.7071C9.89456 21.5196 9.99992 21.2652 9.99992 21V17C9.99992 16.7348 10.1053 16.4805 10.2928 16.2929C10.4803 16.1054 10.7347 16 10.9999 16H12.9999C13.2651 16 13.5195 16.1054 13.707 16.2929C13.8946 16.4805 13.9999 16.7348 13.9999 17V21C13.9999 21.2652 14.1053 21.5196 14.2928 21.7071C14.4803 21.8947 14.7347 22 14.9999 22H17.9999C18.5304 22 19.0391 21.7893 19.4141 21.4142C19.7892 21.0392 19.9999 20.5305 19.9999 20V12.414L20.2929 12.707C20.4815 12.8892 20.7341 12.99 20.9963 12.9877C21.2585 12.9854 21.5093 12.8803 21.6947 12.6948C21.8801 12.5094 21.9853 12.2586 21.9876 11.9964C21.9899 11.7342 21.8891 11.4816 21.7069 11.293Z"]
-              | Home
-          = link_to projects_path, class:"#{sidebar_main_btn_css}" do
-            svg.flex-shrink-0.w-5.h-5.text-gray-500.transition.duration-75.group-hover:text-gray-900.dark:text-gray-400.dark:group-hover:text-white[aria-hidden="true" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"]
-              path[fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd"]
+        = link_to 'PmApp', '#', class: "self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
+      /navbar menu
+      .hidden.md:flex.justify-center.item-center.space-x-1
+        = link_to home_path, class:"#{sidebar_main_btn_css}" do
+          = image_tag('home.svg', alt: 'Home SVG')
+          .pl-2
+            | Home
+        = link_to projects_path, class:"#{sidebar_main_btn_css} pr-6" do
+          = image_tag('projects.svg', alt: 'Projects SVG')
+          .pl-2
             | Projects
+        button(id="create_dropdown_btn" class="#{sidebar_main_btn_css}" type="button" data-dropdown-toggle="create_dropdown_btn1" aria-expanded="false")
+          = image_tag('create.svg', alt: 'CREATE SVG')
+          .pl-2
+            | Create
+        #create_dropdown_btn1.hidden.z-50.my-4.w-44.text-base.list-none.bg-white.rounded-xl.shadow.dark:bg-gray-700.dark:divide-gray-600
+          ul.py-1.divide-y.divide-gray-100.dark:text-gray-300[aria-labelledby="create_dropdown_btn"]
+            li
+              = link_to 'New project', new_project_path, class: "#{navbar_user_dropdown_btn_css}"
+            - if @project && !@project.new_record?
+              li
+                = link_to 'New epic', new_project_epic_path(@project), class: "#{navbar_user_dropdown_btn_css}"
+              li
+                = link_to 'New issue', new_project_issue_path(@project), class: "#{navbar_user_dropdown_btn_css}"
       / user dropdown menu button      
       - if current_user 
-        .flex.items-center.lg:order-2
-          button#user-menu-button.flex.mx-3.text-sm.rounded-full.md:mr-0.focus:ring-4.focus:ring-gray-300.dark:focus:ring-gray-600[type="button" aria-expanded="false" data-dropdown-toggle="dropdown"]
-            span.sr-only
-              | Open user menu
-            svg[width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"]
-              path[d="M12 12C14.4853 12 16.5 9.98528 16.5 7.5C16.5 5.01472 14.4853 3 12 3C9.51472 3 7.5 5.01472 7.5 7.5C7.5 9.98528 9.51472 12 12 12Z" fill="#2F2F38"]
-              path[d="M14 13H10C8.67441 13.0016 7.40356 13.5289 6.46622 14.4662C5.52888 15.4036 5.00159 16.6744 5 18V20C5 20.2652 5.10536 20.5196 5.29289 20.7071C5.48043 20.8946 5.73478 21 6 21H18C18.2652 21 18.5196 20.8946 18.7071 20.7071C18.8946 20.5196 19 20.2652 19 20V18C18.9984 16.6744 18.4711 15.4036 17.5338 14.4662C16.5964 13.5289 15.3256 13.0016 14 13Z" fill="#2F2F38"]
-          #dropdown.hidden.z-50.my-4.w-56.text-base.list-none.bg-white.rounded.divide-y.divide-gray-100.shadow.dark:bg-gray-700.dark:divide-gray-600.rounded-xl
-            .py-3.px-4
-              span.block.text-sm.font-semibold.text-gray-900.dark:text-white
-                = current_user.full_name
-              span.block.text-sm.text-gray-900.truncate.dark:text-white
-                = current_user.email
-            ul.py-1.text-gray-700.dark:text-gray-300[aria-labelledby="dropdown"]
-              li
-                = link_to 'My profile', '#', class: "block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
-              li
-                = link_to 'Account settings', edit_user_registration_path, class: "block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
-            ul.py-1.text-gray-700.dark:text-gray-300[aria-labelledby="dropdown"]
-              li
-                = link_to "Logout", destroy_user_session_path, class: "block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white", data: { "turbo-method": :delete }
-
-
+        button#user-menu-button.flex.mx-3.text-sm.rounded-full.md:mr-0[type="button" aria-expanded="false" data-dropdown-toggle="dropdown"]
+          = image_tag('user_menu_btn.svg', alt: 'USER MENU BTN SVG')
+        #dropdown.hidden.z-50.my-4.w-56.text-base.list-none.bg-white.rounded.divide-y.divide-gray-100.shadow.dark:bg-gray-700.dark:divide-gray-600.rounded-xl
+          .py-3.px-4
+            span.block.text-sm.font-semibold.text-gray-900.dark:text-white
+              = current_user.full_name
+            span.block.text-sm.text-gray-900.truncate.dark:text-white
+              = current_user.email
+          ul.py-1.dark:text-gray-300[aria-labelledby="dropdown"]
+            li
+              = link_to 'My profile', '#', class: "#{navbar_user_dropdown_btn_css}"
+            li
+              = link_to 'Account settings', edit_user_registration_path, class: "#{navbar_user_dropdown_btn_css}"
+          ul.py-1.dark:text-gray-300[aria-labelledby="dropdown"]
+            li
+              = link_to "Logout", destroy_user_session_path, class: "#{navbar_user_dropdown_btn_css}", data: { "turbo-method": :delete }
+    .flex.justify-center.border-t.border-gray-200.space-x-0.5.py-2.md:hidden
+      = link_to home_path, class:"#{navbar_main_btn_css}" do
+        = image_tag('home.svg', alt: 'Home SVG')
+      = link_to projects_path, class:"#{navbar_main_btn_css}" do
+        = image_tag('projects.svg', alt: 'Projects SVG')
+      button(id="create_dropdown_btn" class="#{navbar_main_btn_css}" type="button" data-dropdown-toggle="create_dropdown" aria-expanded="false")
+        = image_tag('create.svg', alt: 'CREATE SVG')
+      #create_dropdown.hidden.z-50.my-4.w-44.text-base.list-none.bg-white.rounded-xl.shadow.dark:bg-gray-700.dark:divide-gray-600
+        ul.py-1.divide-y.divide-gray-100.dark:text-gray-300[aria-labelledby="create_dropdown_btn"]
+          li
+            = link_to 'New project', new_project_path, class: "#{navbar_user_dropdown_btn_css}"
+          - if @project && !@project.new_record?
+            li
+              = link_to 'New epic', new_project_epic_path(@project), class: "#{navbar_user_dropdown_btn_css}"
+            li
+              = link_to 'New issue', new_project_issue_path(@project), class: "#{navbar_user_dropdown_btn_css}"
