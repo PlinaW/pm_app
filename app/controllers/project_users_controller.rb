@@ -9,7 +9,7 @@ class ProjectUsersController < ApplicationController
     user = User.find_by(email:) || User.invite!({ email: }, current_user)
     return redirect_to project_path(@project), alert: 'Email invalid' unless user.valid?
 
-    user.project_users.find_or_create_by(project: @project, roles: 0)
+    user.project_users.find_or_create_by(project: @project, role: 0)
 
     redirect_to project_path(@project), notice: "#{email} was invited"
   end

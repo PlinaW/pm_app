@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_09_145813) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_03_205923) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -56,7 +56,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_09_145813) do
   create_table "project_users", force: :cascade do |t|
     t.bigint "project_id", null: false
     t.bigint "user_id", null: false
-    t.integer "roles", null: false
+    t.integer "role", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["project_id"], name: "index_project_users_on_project_id"
@@ -99,6 +99,24 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_09_145813) do
     t.index ["user_story_id"], name: "index_tasks_on_user_story_id"
   end
 
+  create_table "team_users", force: :cascade do |t|
+    t.bigint "team_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "role", default: 0
+    t.index ["team_id"], name: "index_team_users_on_team_id"
+    t.index ["user_id"], name: "index_team_users_on_user_id"
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.string "name"
+    t.bigint "project_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_teams_on_project_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -117,6 +135,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_09_145813) do
     t.string "invited_by_type"
     t.bigint "invited_by_id"
     t.integer "invitations_count", default: 0
+    t.integer "role", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
     t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
@@ -136,4 +155,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_09_145813) do
   add_foreign_key "tasks", "issues", column: "user_story_id"
   add_foreign_key "tasks", "sprints"
   add_foreign_key "tasks", "users"
+  add_foreign_key "team_users", "teams"
+  add_foreign_key "team_users", "users"
+  add_foreign_key "teams", "projects"
 end

@@ -19,7 +19,7 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
     @project.start_date = Date.today
     if @project.save
-      @project.project_users.create(user: current_user, roles: 'admin')
+      @project.project_users.create(user: current_user, role: 'admin')
       flash[:notice] = 'Project was successfuly created'
       redirect_to @project
     else
