@@ -37,7 +37,7 @@ class TeamsController < ApplicationController
 
   def destroy
     @team.destroy
-    redirect_to teams_path
+    redirect_to project_teams_path
   end
 
   private
