@@ -1,0 +1,28 @@
+.pt-4.mx-10.mb-8.bg-white.col-span-2.dark:border-gray-700.dark:bg-gray-800
+  .mb-4.text-lg.font-semibold.dark:text-white
+    | Add user to the project:
+    = render partial: 'project_users/invite_form'
+.mx-10.pt-4.mb-8.bg-white.col-span-2.dark:border-gray-700.dark:bg-gray-800
+  .mb-4.text-lg.font-semibold.dark:text-white
+    | Members
+  table.w-full.text-sm.text-left.text-gray-500.dark:text-gray-400
+    tbody
+      - @project_users.each do |user|
+        tr.border-t.border-b.dark:border-gray-700
+          td.pl-4.md:pr-4.py-3.font-medium.text-gray-900.whitespace-nowrap.dark:text-white[scope="row"]
+            = user.full_name
+          td.pl-4.md:pr-4.py-3.font-medium.text-gray-900.whitespace-nowrap.dark:text-white[scope="row"]
+            = user.email
+          td.pl-4.xl:pr-60.py-3.font-medium.text-gray-900.whitespace-nowrap.dark:text-white[scope="row"]
+            = "(#{user.project_users.find_by(project_id: @project).role})"
+          td.px-4.py-3.flex.items-center.justify-end
+            button id="#{user.id}-dropdown-button" class="inline-flex items-center p-0 5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100" data-dropdown-toggle="#{user.id}-dropdown" type="button"
+              svg.w-5.h-5[aria-hidden="true" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"]
+                path[d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"]
+            div id="#{user.id}-dropdown" class=" hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
+              div class= "py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="#{user.id}-dropdown-button"
+                = link_to 'Show', '#', class:"block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              .py-1
+                = link_to 'Edit', edit_user_registration_path, class:"block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              .py-1
+                = link_to "Remove from project", project_project_user_path(@project, user.project_users.where(project: @project).first), class: "block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }
