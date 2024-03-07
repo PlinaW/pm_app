@@ -13,6 +13,7 @@ Rails.application.routes.draw do
         post :invite
       end
     end
+    resources :teams
     resources :epics
     resources :issues
   end
