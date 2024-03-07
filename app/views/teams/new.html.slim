@@ -1,0 +1,17 @@
+.max-w-2xl.m-auto
+  = render 'shared/errors_validation', obj: @team
+
+section
+  .flex.flex-col.items-center.justify-center.px-6.py-8.mx-auto
+    .w-full.bg-white.border.rounded-lg.shadow.dark:border.md:mt-0.sm:max-w-md.xl:p-0.dark:bg-gray-800.dark:border-gray-700
+      .p-6.space-y-4.md:space-y-6.sm:p-8
+        h1.text-xl.font-bold.leading-tight.tracking-tight.text-gray-900.md:text-2xl.dark:text-white
+          = @team.new_record? ? "Create a new team" : "Edit team"
+        = form_with model: [@project, @team], data: { turbo: false } do |form|
+          .space-y-4.md:space-y-6
+            .
+              = form.label :name, class:"#{form_label_css}" 
+              = form.text_field :name, autofocus: true, class:"#{text_field_input_css}", placeholder:"Team name" 
+            .
+              = form.submit (@team.new_record? ? "Create team" : "Update team"), class:"#{form_submit_btn_css}" 
+              = link_to "Back", project_teams_path, class:"#{form_back_btn_css} mt-4" 

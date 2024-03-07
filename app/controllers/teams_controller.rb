@@ -16,9 +16,9 @@ class TeamsController < ApplicationController
   def create
     @team = @project.teams.new(team_params)
     if @team.save
-      @team.team_users.create(user: current_user, role: 'team_leader')
+      @team.team_users.create(user: current_user, role: 'team_admin')
       flash[:notice] = 'Team was successfuly created'
-      redirect_to @team
+      redirect_to project_team_path(@project, @team)
     else
       render :new
     end
@@ -29,7 +29,7 @@ class TeamsController < ApplicationController
   def update
     if @team.update(team_params)
       flash[:notice] = 'Team was successfuly updated'
-      redirect_to @team
+      redirect_to project_team_path(@project, @team)
     else
       render :edit
     end
@@ -49,7 +49,7 @@ class TeamsController < ApplicationController
   def authorize_team_users
     return if @team.users.include? current_user
 
-    redirect_to teams_path,
+    redirect_to project_teams_path,
                 alert: 'You are not a member of this team'
   end
 
