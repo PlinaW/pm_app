@@ -2,6 +2,10 @@ class ProjectUsersController < ApplicationController
 
   before_action :set_project
 
+  def index
+    @project_users = User.joins(:project_users).where(project_users: { project_id: @project })
+  end
+
   def invite
     email = params[:email]
     return redirect_to project_path(@project), alert: 'No email provided' if email.blank?

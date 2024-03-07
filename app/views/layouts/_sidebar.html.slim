@@ -27,8 +27,10 @@ aside#sidebar.fixed.top-0.z-40.w-full.transition-transform.-translate-y-full.md:
       | People
     ul.space-y-1.mt-1.pt-1
       - if @project
-
-
+        li = link_to project_project_users_path(@project), class:"#{sidebar_main_btn_css}" do
+          = image_tag('team.svg', alt: 'Team SVG')
+          .ml-3
+            | Project Members     
       - else
         li = link_to users_path, class:"#{sidebar_main_btn_css}" do
           = image_tag('team.svg', alt: 'Team SVG')

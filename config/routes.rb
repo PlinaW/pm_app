@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
   get 'home', to: 'pages#index' 
   resources :projects do
-    resources :project_users, only: [:destroy] do
+    resources :project_users, only: [:index, :destroy] do
       collection do
         post :invite
       end
