@@ -1,7 +1,8 @@
 class TeamsController < ApplicationController
   before_action :set_project
   before_action :set_team, only: %i[show edit update destroy]
-  before_action :authorize_team_users, only: %i[show edit update destroy]
+  before_action :set_team_users, only: %i[show]
+  # before_action :authorize_team_users, only: %i[show edit update destroy]
 
   def index
     @teams = @project.teams
@@ -46,11 +47,8 @@ class TeamsController < ApplicationController
     @team = @project.teams.find(params[:id])
   end
 
-  def authorize_team_users
-    return if @team.users.include? current_user
-
-    redirect_to project_teams_path,
-                alert: 'You are not a member of this team'
+  def set_team_users
+    @team_users = User.joins(:team_users).where(team_users: { team_id: @team })
   end
 
   def team_params

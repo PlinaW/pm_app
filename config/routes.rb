@@ -13,7 +13,9 @@ Rails.application.routes.draw do
         post :invite
       end
     end
-    resources :teams
+    resources :teams do
+      resources :project_users, only: [:destroy]
+    end
     resources :epics
     resources :issues
   end
